@@ -1,0 +1,61 @@
+.no-touch article:hover {
+  @include break(medish) {
+    left: auto;
+  }
+}
+
+.no-touch article:hover,
+.swiped {
+  @include transform(translateX(-4.5em));
+
+  .post-meta {
+    opacity: 1;
+    @include transform(translateX(6em) scale3d(1, 1, 1));
+  }
+}
+
+.post-meta {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 6em;
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+  opacity: 0;
+  z-index: -1;
+  @include transform(translateX(-1.5em) scale3d(0.8, 0.8, 0.8));
+  @include transition(transform 0.25s ease-in-out, opacity 0.25s ease-in-out);
+}
+
+.post-meta__list {
+  @extend %shadowed;
+  @extend %rounded;
+  @extend %unstyled;
+
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 1.5em;
+  width: 3em;
+  margin-top: -4.5em;
+}
+
+.post-meta__item {
+  width: 100%;
+  padding: 0;
+  border-bottom: 1px solid #eee;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+
+  &:first-child {
+    border-radius: $rounding $rounding 0 0;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+    border-radius: 0 0 $rounding $rounding;
+  }
+}

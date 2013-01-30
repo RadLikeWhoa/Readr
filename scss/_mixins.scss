@@ -1,0 +1,42 @@
+@mixin break ($breakpoint) {
+  @if $breakpoint == small {
+    @media (min-width: 35em) { @content; }
+  } @else if $breakpoint == medium {
+    @media (min-width: 50em) { @content; }
+  } @else if $breakpoint == medish {
+    @media (min-width: 60em) { @content; }
+  } @else if $breakpoint == large {
+    @media (min-width: 70em) { @content; }
+  }
+}
+
+@mixin font-size ($size, $specific-leadding: false) {
+  font-size: $size / $base-font-size + em;
+
+  @if $specific-leadding == false {
+    line-height: ceil($size / $base-spacing) * ($base-spacing / $size);
+  } @else {
+    line-height: $specific-leadding / $size;
+  }
+}
+
+@mixin rem ($properties, $size){
+  @each $property in $properties {
+    #{$property}: $size;
+    #{$property}: $size / $base-font-size + rem;
+  }
+}
+
+@function heading ($level) {
+  @return "h#{$level}, .h#{$level}";
+}
+
+@function headings ($levels: 6) {
+  $selector: "";
+
+  @for $i from 1 to $levels + 1 {
+    $selector: $selector + heading($i) + ",";
+  }
+
+  @return $selector;
+}

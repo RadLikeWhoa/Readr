@@ -1,0 +1,29 @@
+footer {
+  @extend %wrap;
+}
+
+.footer-description {
+  @extend %shadowed;
+  @extend %rounded;
+  @extend .card;
+
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+
+  .content {
+    padding: 0 1.5em 1.5em;
+
+    @include break(small) {
+      padding: 0 3em 3em;
+    }
+  }
+
+  @include break(small) {
+    padding-top: 3em;
+    padding-bottom: 3em;
+  }
+}
+
+.copyright {
+  text-align: center;
+}

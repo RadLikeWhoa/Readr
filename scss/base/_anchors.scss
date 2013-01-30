@@ -1,0 +1,19 @@
+/**
+ * Links are highlighted using colour.
+ */
+
+a {
+  color: #dc0000;
+  outline: 0;
+  text-decoration: none;
+  @include transition(color 0.25s ease-in-out);
+
+  &:hover,
+  &:focus {
+    color: #fd0000;
+  }
+
+  &:focus {
+    outline: thin dotted;
+  }
+}

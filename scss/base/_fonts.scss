@@ -1,0 +1,68 @@
+/**
+ * Webfonts are served from Google Web Fonts (Droid Serif, Source Sans Pro) and
+ * Tumblr's static domain (Entypo).
+ */
+
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Serif'),
+       local('DroidSerif'),
+       url(http://themes.googleusercontent.com/static/fonts/droidserif/v3/0AKsP294HTD-nvJgucYTaLrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro'),
+       local('SourceSansPro-Regular'),
+       url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v3/ODelI1aHBYDBqgeIAH2zlNHq-FFgoDNV3GTKpHwuvtI.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Source Sans Pro Italic'),
+       local('SourceSansPro-It'),
+       url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v3/M2Jd71oPJhLKp0zdtTvoM_bce-VcyLJMRR1FC9qWbU8.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold Italic'),
+       local('SourceSansPro-BoldIt'),
+       url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v3/fpTVHK8qsXbIeTHTrnQH6PgYMAt3u4NmhhzLLLPJ5qH3rGVtsTkPsbDajuO5ueQw.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold'),
+       local('SourceSansPro-Bold'),
+       url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v3/toadOcfmlt9b38dHJxOBGIqjGYJUyOXcBwUQbRaNH6c.woff) format('woff');
+}
+
+/**
+ * Entypo is used as an icon font. A character map is available at the
+ * following URL:
+ * http://entypo.com/characters.php
+ */
+
+@font-face {
+  font-family: 'Entypo';
+  font-style: normal;
+  font-weight: normal;
+  src: url('http://static.tumblr.com/olr4cud/Ankmberun/entypo-webfont.eot');
+  src: local('Entypo'),
+       local('EntypoRegular'),
+       url('http://static.tumblr.com/olr4cud/Ankmberun/entypo-webfont.eot?#iefix') format('embedded-opentype'),
+       url('http://static.tumblr.com/olr4cud/4FXmberwf/entypo-webfont.woff') format('woff'),
+       url('http://static.tumblr.com/olr4cud/MvMmbervu/entypo-webfont.ttf') format('truetype'),
+       url('http://static.tumblr.com/olr4cud/d9pmberv2/entypo-webfont.svg#EntypoRegular') format('svg');
+}

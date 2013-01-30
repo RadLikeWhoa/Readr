@@ -1,0 +1,7 @@
+.sidebar {
+  @extend %wrap;
+
+  @include break(small) {
+    margin-bottom: 3em;
+  }
+}

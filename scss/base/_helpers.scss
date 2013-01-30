@@ -1,0 +1,52 @@
+/**
+ * Micro Clearfix Hack, as per Nicolas Gallagher.
+ * (see: http://nicolasgallagher.com/micro-clearfix-hack/)
+ */
+
+%clearfix {
+  *zoom: 1;
+
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+/**
+ * Extend these palceholder selectors to apply either a drop shadow or rounded
+ * corners. The rounding amount can be set in _vars.scss.
+ */
+
+%shadowed {
+  /* -webkit prefix is needed to support older versions of Android. */
+  -webkit-box-shadow: 0 1px 2px rgba(#000, 0.15);
+  box-shadow: 0 1px 2px rgba(#000, 0.15);
+}
+
+%rounded {
+  border-radius: $rounding;
+}
+
+/**
+ * Extend `%unstyled` to remove all default styling from a list, e.g. a
+ * navigational list.
+ */
+
+%unstyled {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+%wrap {
+  max-width: 49em;
+  padding-right: 6.7%;
+  padding-left: 6.7%;
+  margin-right: auto;
+  margin-left: auto;
+}

@@ -1,0 +1,47 @@
+/**
+ * Blockquotes stand out through colour and a border to the left. The quote's
+ * content is marked up using one or more <p> elements, while the attribution,
+ * if applicable, is marked up using a <footer> element. Quotation marks as
+ * well as en- or em-dashes leading the attribution must not be included.
+ *
+ * Example:
+ * <blockquote>
+ *   <p>Text to be quoted.</p>
+ *   <footer>Attribution</footer>
+ * </blockquote>
+ */
+
+blockquote {
+  @include rem(padding-top padding-bottom, 24px);
+  padding-right: 6%;
+  padding-left: 6%;
+  margin-top: 0;
+  color: #acacac;
+  border-left: 7px solid #eee;
+
+  blockquote {
+    padding-right: 0;
+    margin-top: 1.5em;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  p {
+    margin-left: 0;
+    margin-right: 0;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  footer {
+    padding-left: 0;
+    padding-right: 0;
+    @include font-size(12px);
+
+    &::before{
+      content: "\2014\00A0";
+    }
+  }
+}

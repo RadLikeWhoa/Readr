@@ -1,0 +1,32 @@
+.chat-log {
+  @extend %unstyled;
+
+  li {
+    padding: 1.5em 3em;
+    border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    @include break(small) {
+      padding-left: 4.5em;
+      padding-right: 4.5em;
+    }
+  }
+
+  .label {
+    font-weight: bold;
+  }
+}
+
+@for $i from 1 to 9 {
+  @if round($i / 2) == $i / 2 {
+    @include break(small) {
+      .chat__user-#{$i} { text-align: right; }
+    }
+    .chat__user-#{$i} .label { color: #3c8cd3; }
+  } @else {
+    .chat__user-#{$i} .label { color: #d34d3c; }
+  }
+}

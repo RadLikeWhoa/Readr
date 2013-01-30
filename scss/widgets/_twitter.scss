@@ -1,0 +1,38 @@
+.twitter {
+  padding-bottom: 1.5em;
+
+  @include break(small) {
+    padding-bottom: 3em;
+  }
+}
+
+.tweets {
+  @extend %clearfix;
+  @extend %unstyled;
+  margin-bottom: 1.5em;
+  background-color: #fafafa;
+  border-bottom: 1px solid #eee;
+
+  @include break(small) {
+    padding: 1.5em;
+    margin-bottom: 3em;
+  }
+}
+
+.tweet {
+  padding: 1.5em;
+
+  &:nth-child(2) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  @include break(small) {
+    float: left;
+    width: 33.333%;
+
+    &:nth-child(2) {
+      padding: 1.5em;
+    }
+  }
+}

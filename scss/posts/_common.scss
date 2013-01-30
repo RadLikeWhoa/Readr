@@ -1,0 +1,142 @@
+.posts {
+  position: relative;
+}
+
+article {
+  position: relative;
+  z-index: 0;
+  @include transition(transform 0.25s ease-in-out);
+
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.post {
+    @extend %clearfix;
+}
+
+.post-title {
+  text-align: center;
+}
+
+article p {
+  img,
+  iframe {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.body img {
+  &[align] {
+    height: auto;
+    width: 50%;
+    margin-bottom: 1.5em;
+  }
+
+  &[align="left"] {
+    float: left;
+    margin-right: 1.5em;
+  }
+
+  &[align="right"] {
+    float: right;
+    margin-left: 1.5em;
+  }
+}
+
+.reblogged {
+  text-align: center;
+
+  &:first-letter {
+    text-transform: lowercase;
+  }
+}
+
+// DOUBLE CHECK
+
+article,
+.load_more,
+.pagination .button:last-child,
+.following,
+.search,
+.comment-view,
+.post-summary,
+article .body:last-child,
+article .reblogged,
+.img,
+.video-wrapper,
+.html_photoset,
+.album,
+.site-header,
+.twitter,
+.footer-description {
+  margin-bottom: 3em;
+
+  @include break(small) {
+    margin-bottom: 4.5em;
+  }
+}
+
+.text,
+.link {
+  .post {
+    padding-top: 3em;
+
+    @include break(small) {
+      padding-top: 4.5em;
+    }
+  }
+}
+
+article .body,
+.reblogged,
+.external,
+h2,
+.link-date {
+  @include rem(margin-right margin-left, 48px);
+
+  @include break(small) {
+    @include rem(margin-right margin-left, 62px);
+  }
+}
+
+article .body blockquote {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.cover,
+.photo-content,
+.video-wrapper iframe,
+.external {
+  display: block;
+}
+
+.photo-content,
+.video-wrapper iframe,
+.html_photoset,
+.album {
+  width: 100%;
+  max-width: none;
+  border-radius: 3px 3px 0 0;
+}
+
+.img:last-child .photo-content,
+.video-wrapper:last-child iframe,
+.html_photoset:last-child,
+.album:last-child {
+  border-radius: 3px;
+}
+
+.note-view,
+.tag-view,
+.post-info,
+.comment-view {
+  padding: 1.5em 3em;
+}
+
+.comment-view {
+  margin-top: -1.5em;
+}

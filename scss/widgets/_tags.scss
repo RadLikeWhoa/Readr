@@ -1,0 +1,24 @@
+.tags {
+  @extend %clearfix;
+
+  margin-bottom: -0.5em;
+
+  li {
+    float: left;
+    margin-bottom: 0.5em;
+    margin-right: 0.5em;
+    border: 1px solid #eee;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &[class*="no+intro"] {
+      display: none;
+    }
+  }
+
+  a {
+    padding: 0 0.9375em;
+  }
+}

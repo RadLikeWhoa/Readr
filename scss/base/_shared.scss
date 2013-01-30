@@ -1,0 +1,10 @@
+#{headings(3)},
+p,
+ul,
+ol,
+blockquote,
+pre,
+.sidebar,
+article .body {
+  @include rem(margin-bottom, 24px);
+}

@@ -1,0 +1,77 @@
+.album {
+  @extend %clearfix;
+  padding: 3em;
+  background-color: #ededed;
+
+  @include break(small) {
+    padding: 4.5em;
+  }
+}
+
+.cover {
+  @extend %rounded;
+}
+
+.artwork {
+  position: relative;
+  margin-right: 5%;
+
+  .player {
+    display: block;
+    margin-bottom: 1.5em;
+  }
+
+  @include break(small) {
+    float: left;
+    width: 40%;
+  }
+}
+
+.has-cover {
+  @extend %shadowed;
+  @extend %rounded;
+  margin-right: 0;
+
+  .player {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    width: 27px;
+    height: 27px;
+    margin-bottom: 0;
+    border: 1px solid rgba(#000, 0.7);
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  + .album-info {
+    padding: 1.5em;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #fafafa;
+    border: 1px solid rgba(#000, 0.1);
+    border-top: 0;
+    border-radius: 0 0 3px 3px;
+
+    @include break(small) {
+      float: left;
+      width: 60%;
+      margin-top: 1.5em;
+      margin-left: 0;
+      margin-right: 0;
+      border-left: 0;
+      border-radius: 0 3px 3px 0;
+    }
+  }
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    @include background-image(linear-gradient(-45deg, rgba(#fff, 0.45), rgba(#fff, 0.15) 50%, rgba(#000, 0) 50%));
+    pointer-events: none;
+  }
+}

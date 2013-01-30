@@ -1,0 +1,91 @@
+.social {
+  @extend %clearfix;
+  @extend %unstyled;
+
+  margin-bottom: 0;
+
+  @include break(small) {
+    margin-left: -1.5em;
+  }
+}
+
+.social__link {
+  margin-bottom: 1.5em;
+  font-weight: bold;
+
+  a {
+    @extend %rounded;
+    @extend %shadowed;
+
+    display: block;
+    padding: 1.5em;
+    color: #fff;
+  }
+
+  &:last-child {
+    margin-bottom: 3em;
+
+    @include break(small) {
+      margin-bottom: 4.5em;
+    }
+  }
+
+  @include break(small) {
+    float: left;
+    width: 50%;
+    padding-left: 1.5em;
+  }
+
+  @include break(medium) {
+    width: 33.333%;
+  }
+
+  @include break(large) {
+    width: 25%;
+  }
+}
+
+.social__link--twitter {
+  @extend .social__link;
+  a { background-color: #00a0d1; }
+}
+
+.social__link--facebook {
+  @extend .social__link;
+  a { background-color: #3b5998; }
+}
+
+.social__link--instagram {
+  @extend .social__link;
+  a { background-color: #634d40; }
+}
+
+.social__link--dribbble {
+  @extend .social__link;
+  a { background-color: #ea4c89; }
+}
+
+.social__link--youtube {
+  @extend .social__link;
+  a { background-color: #c4302b; }
+}
+
+.social__link--lastfm {
+  @extend .social__link;
+  a { background-color: #c3000d; }
+}
+
+.social__link--vimeo {
+  @extend .social__link;
+  a { background-color: #86c9ef; }
+}
+
+.social__link--foursquare {
+  @extend .social__link;
+  a { background-color: #25a0ca; }
+}
+
+.social__link--flickr {
+  @extend .social__link;
+  a { background-color: #0063dc; }
+}

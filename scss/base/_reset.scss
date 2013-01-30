@@ -1,0 +1,61 @@
+article,
+aside,
+address,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+[hidden] {
+  display: none;
+}
+
+p {
+  margin-top: 0;
+}
+
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+iframe,
+img,
+object,
+svg {
+  max-width: 100%;
+}
+
+input,
+option,
+optgroup,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+figure {
+  margin: 0;
+}

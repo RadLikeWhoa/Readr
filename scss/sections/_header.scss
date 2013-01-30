@@ -1,0 +1,35 @@
+.site-header {
+  position: relative;
+  padding: 3em 0;
+  background-color: rgba(#fffdfa, 0.45);
+
+  &::after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    @include background-image(linear-gradient(left, rgba(#1e1e1e, 0), rgba(#1e1e1e, 0.25), rgba(#1e1e1e, 0)));
+  }
+}
+
+.site-header__wrap {
+  @extend %wrap;
+}
+
+.blog-heading {
+  text-align: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.description {
+  padding-right: 1em;
+  padding-left: 1em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

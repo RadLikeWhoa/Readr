@@ -1,0 +1,24 @@
+.quote blockquote {
+  @extend %rounded;
+
+  font-family: $quote-post-face;
+  @include rem(padding, 48px);
+  margin-right: 0;
+  margin-left: 0;
+  color: #7d0808;
+  @include font-size(19px);
+  background-color: #f8ecc9;
+  border: 0;
+
+  @include break(small) {
+    @include rem(padding, 62px);
+  }
+
+  p {
+    quotes: "\201C" "\201D" "\2018" "\2019";
+    text-indent: -0.4em;
+
+    &::before { content: open-quote; }
+    &::after  { content: close-quote; }
+  }
+}

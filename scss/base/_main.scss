@@ -1,0 +1,32 @@
+* {
+  @include box-sizing(border-box);
+}
+
+/**
+ * To make use of the rem-based styling, font sizes are applied to the <html>
+ * element. This makes it easier to change the layout based on a single change
+ * of the font size.
+ */
+
+html {
+  font: 87.5%/1.5 $text-face;
+  background-color: #fffaf0;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+
+  @include break(small)  { font-size: 100%; }
+  @include break(medium) { font-size: 113.5%; }
+  @include break(large)  { font-size: 125%; }
+}
+
+body {
+  color: #333;
+  margin: 0 auto 3em;
+  overflow-x: hidden;
+}

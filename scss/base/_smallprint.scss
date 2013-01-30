@@ -1,0 +1,9 @@
+/**
+ * Use `.small` for smallprint without altering the semantic meaning (<small>
+ * is for legal text only.)
+ */
+
+small,
+.small {
+  @include font-size(13px);
+}

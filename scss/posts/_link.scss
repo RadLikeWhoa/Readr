@@ -1,0 +1,24 @@
+.link-date {
+  position: relative;
+  text-align: center;
+
+  span {
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    background-color: #fff;
+  }
+
+  &::before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.external::after {
+  content: "\00A0\2192";
+  font-weight: 300;
+}

@@ -1,0 +1,27 @@
+/**
+ * Double-stranded heading hierarchy, as per Harry Roberts.
+ * (see: http://csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/)
+ *
+ * Headings are to be created with their semantically correct tag, but can be
+ * given a different weight using classes like `.h1`.
+ *
+ * Example:
+ * <h1 class="h2">First-level heading with second-level appearance</h1>
+ */
+
+#{headings(3)} {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+#{heading(1)} {
+  @include font-size(39px);
+}
+
+#{heading(2)} {
+  @include font-size(30px);
+}
+
+#{heading(3)} {
+  @include font-size(24px);
+}

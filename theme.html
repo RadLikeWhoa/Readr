@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!--
+
+  ===========================================================================
+
+  Readr Theme v2.0
+  by Sacha Schmid
+
+  For questions and comments, please visit
+  [the official blog](http://readrtheme.tumblr.com)
+  or read
+  [the docs](http://readrtheme.tumblr.com/docs)
+
+  For further questions or feature request send me a tweet at
+  http://twitter.com/RadLikeWhoa_
+
+  ===========================================================================
+
+-->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{block:PostTitle}{PostTitle} | {/block:PostTitle}{Title}</title>
+    {block:Description}
+      <meta name="description" content="{MetaDescription}">
+    {/block:Description}
+    <link rel="shortcut icon" href="{PortraitURL-48}">
+    <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="font:Text" content="Source Sans Pro, sans-serif">
+    <meta name="font:Quotes" content="Droid Serif, serif">
+    <meta name="image:Page Background" content="">
+    <meta name="image:Header" content="">
+    <meta name="if:Animate Page Scrolling" content="1">
+    <meta name="if:Enable Pagination" content="0">
+    <meta name="if:Enable Twitter Widget" content="1">
+    <meta name="if:Highlight Intro Paragraphs" content="0">
+    <meta name="if:Keyboard Navigation" content="1">
+    <meta name="if:Relative Date Format" content="1">
+    <meta name="if:Show Ask Link in Navigation" content="1">
+    <meta name="if:Show Archive Link in Navigation" content="1">
+    <meta name="if:Show Description in Footer" content="0">
+    <meta name="if:Show Home Link in Navigation" content="0">
+    <meta name="if:Show Note Count" content="1">
+    <meta name="if:Show Notes" content="1">
+    <meta name="if:Show Post Actions" content="1">
+    <meta name="if:Show Random Post Link in Navigation" content="1">
+    <meta name="if:Show Reblog Info" content="1">
+    <meta name="if:Show RSS Link in Navigation" content="0">
+    <meta name="if:Show Tags" content="0">
+    <meta name="if:Show Word Count" content="1">
+    <meta name="if:Show Followings" content="1">
+    <meta name="if:Show Search" content="1">
+    <meta name="text:Google Analytics Tracking Code" content="">
+    <meta name="text:Instagram Username" content="">
+    <meta name="text:Flickr Username" content="">
+    <meta name="text:lastfm Username" content="">
+    <meta name="text:Facebook Username" content="">
+    <meta name="text:YouTube Username" content="">
+    <meta name="text:Vimeo Username" content="">
+    <meta name="text:Foursquare Username" content="">
+    <meta name="text:Dribbble Username" content="">
+    <meta name="text:Disqus Shortname" content="">
+    <link rel="stylesheet" href="http://dl.dropbox.com/u/2209404/Reader/css/style.css">
+    <style>
+      {block:IfPageBackgroundImage}
+        body {
+          background-image: url({image:Page Background});
+          background-size: cover;
+          background-attachment: fixed;
+        }
+      {/block:IfPageBackgroundImage}
+
+      {block:IfHighlightIntroParagraphs}
+        .text .body > p:first-of-type {
+          font-weight: bold;
+        }
+
+        .text .no_intro > p:first-of-type,
+        .text .no-intro > p:first-of-type {
+          font-weight: normal;
+        }
+      {/block:IfHighlightIntroParagraphs}
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__wrap">
+        <h1 class="h2 blog-heading">
+          <a href="/" title="{lang:Home}">{Title}</a>
+        </h1>
+        {block:IfNotShowDescriptionInFooter}
+          {block:Description}
+            <p class="description">{Description}</p>
+          {/block:Description}
+        {/block:IfNotShowDescriptionInFooter}
+        <!--<div class="site-icons clearfix">
+          <a href="/" title="{lang:Home}"><img src="{PortraitURL-96}" class="avatar" alt="Avatar" /></a>
+          <a href="/rss" class="site-link button icon">r</a>
+          <a href="/archive" class="site-link button icon">a</a>
+          <a href="/random" class="site-link button icon">r</a>
+        </div>-->
+      </div>
+    </header>
+    <section class="main-content">
+      <section class="posts" id="posts">
+        {block:Posts}
+          <article class="{PostType}">
+            {block:IfShowPostActions}
+              <div class="post-meta">
+                <ul class="post-meta__list">
+                  {block:IndexPage}<li class="post-meta__item button"><a href="{Permalink}"><span aria-hidden="true" class="icon icon-perma"></span></a></li>{/block:IndexPage}
+                  <li class="post-meta__item button"><a href=""><span aria-hidden="true" class="icon icon-like"></span></a></li>
+                  <li class="post-meta__item button"><a href=""><span aria-hidden="true" class="icon icon-reblog"></span></a></li>
+                </ul>
+              </div>
+            {/block:IfShowPostActions}
+            <div class="post card">
+              {block:Text}
+                {block:Title}
+                  <h2 class="post-title"><a href="{Permalink}" title="{lang:Permalink for this post}">{Title}</a></h2>
+                {/block:Title}
+                <div class="body {TagsAsClasses}">
+                  {Body}
+                </div>
+                {block:More}
+                  <p><a href="{Permalink}" title="{lang:Permalink for this post}">{lang:Read more}</a></p>
+                {/block:More}
+              {/block:Text}
+              {block:Photo}
+                <div class="img">
+                  {LinkOpenTag}
+                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-500}" class="photo-content" />
+                  {LinkCloseTag}
+                </div>
+                {block:Caption}
+                  <div class="body">{Caption}</div>
+                {/block:Caption}
+              {/block:Photo}
+              {block:Photoset}
+                {Photoset-700}
+                {block:Caption}
+                  <div class="body">{Caption}</div>
+                {/block:Caption}
+              {/block:Photoset}
+              {block:Quote}
+                <blockquote>
+                  <p>{Quote}</p>
+                  {block:Source}
+                    <footer>{Source}</footer>
+                  {/block:Source}
+                </blockquote>
+              {/block:Quote}
+              {block:Link}
+                <h3 class="link-date"><span>
+                  {block:Date}
+                    {block:IfRelativeDateFormat}
+                      {TimeAgo}
+                    {/block:IfRelativeDateFormat}
+                    {block:IfNotRelativeDateFormat}
+                      {DayOfWeek}, {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}
+                    {/block:IfNotRelativeDateFormat}
+                  {/block:Date}
+                </span></h3>
+                <p><a href="{URL}" class="external" title="{Name}" {Target}>{Name}</a></p>
+                <div class="body">
+                  {block:Description}
+                    {Description}
+                  {/block:Description}
+                  <p><a href="{Permalink}" title="{lang:Permalink for this post}">&#8734;</a></p>
+                </div>
+              {/block:Link}
+              {block:Video}
+                <div class="video-wrapper">{Video-700}</div>
+                {block:Caption}
+                  <div class="body">{Caption}</div>
+                {/block:Caption}
+              {/block:Video}
+              {block:Audio}
+                <div class="album">
+                  <div class="artwork {block:AlbumArt}has-cover{/block:AlbumArt}">
+                    {block:AlbumArt}
+                      <img src="{AlbumArtURL}" class="cover" {block:TrackName}title="{TrackName}" alt="{TrackName}"{/block:TrackName} />
+                    {/block:AlbumArt}
+                    <span class="player">{AudioPlayerBlack}</span>
+                  </div>
+                  <div class="album-info">
+                    {block:TrackName}
+                      <p class="h3 track">{TrackName}</p>
+                    {/block:TrackName}
+                    <p>
+                      {block:Album}{Album}{/block:Album}
+                      {block:Album}{block:Artist}, {/block:Artist}{/block:Album}
+                      {block:Artist}{Artist}{/block:Artist}
+                    </p>
+                    {block:PlayCount}
+                      <p>{PlayCountWithLabel}</p>
+                    {/block:PlayCount}
+                  </div>
+                </div>
+                {block:Caption}
+                  <div class="body">{Caption}</div>
+                {/block:Caption}
+              {/block:Audio}
+              {block:Chat}
+                {block:Title}
+                  <h2 class="post-title"><a href="{Permalink}" title="{lang:Permalink for this post}">{Title}</a></h2>
+                {/block:Title}
+                <ol class="chat-log">
+                  {block:Lines}
+                    <li class="chat__user-{UserNumber}">
+                      {block:Label}
+                        <span class="label">{Label}</span>
+                      {/block:Label}
+                      <div class="line">{Line}</div>
+                    </li>
+                  {/block:Lines}
+                </ul>
+              {/block:Chat}
+              {block:Answer}
+                <p class="h2">{lang:Asker asked 2}: {Question}</p>
+                <div class="body">
+                  <p>{Answer}</p>
+                  <p><a href="{Permalink}" title="{lang:Permalink for this post}">&#8734;</a></p>
+                </div>
+              {/block:Answer}
+              {block:RebloggedFrom}
+                {block:IndexPage}
+                  {block:IfShowReblogInfo}
+                    <p class="reblogged">{lang:Reblogged from ReblogParentTitle 2}</p>
+                  {/block:IfShowReblogInfo}
+                  {block:IfNotShowReblogInfo}
+                    <!--{lang:Reblogged from ReblogParentTitle 2}-->
+                  {/block:IfNotShowReblogInfo}
+                {/block:IndexPage}
+                {block:PermalinkPage}
+                  <p class="reblogged">{lang:Reblogged from ReblogParentTitle 2}</p>
+                {/block:PermalinkPage}
+              {/block:RebloggedFrom}
+            </div>
+          </article>
+          {block:PermalinkPage}
+            <section class="post-summary card">
+              <ul class="post-info summary-child small">
+                {block:IfShowNoteCount}
+                  {block:NoteCount}
+                    <li class="info-child"><b>{lang:Notes}</b>{NoteCountWithLabel}</li>
+                  {/block:NoteCount}
+                {block:IfShowNoteCount}
+                {block:Date}
+                  <li class="info-child">
+                    <b>Posted</b>
+                    {block:IfRelativeDateFormat}
+                      {TimeAgo}
+                    {/block:IfRelativeDateFormat}
+                    {block:IfNotRelativeDateFormat}
+                      {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}
+                    {/block:IfNotRelativeDateFormat}
+                  </li>
+                {/block:Date}
+                {block:ContentSource}
+                  <li class="info-child"><b>{lang:Source}</b><a href="{SourceURL}">{SourceTitle}</a></li>
+                {/block:ContentSource}
+              </ul>
+              {block:IfShowTags}
+                {block:HasTags}
+                  <section id="tags" class="tag-view summary-child">
+                    <ul class="tags small">
+                      {block:Tags}
+                        <li class="button {URLSafeTag}"><a href="{TagURL}" title="{lang:Posts tagged Tag}">{Tag}</a></li>
+                      {/block:Tags}
+                    </ul>
+                  </section>
+                {/block:HasTags}
+              {/block:IfShowTags}
+              {block:IfShowNotes}
+                {block:PostNotes}
+                  <section id="notes" class="note-view summary-child">
+                    <div class="small">{PostNotes}</div>
+                  </section>
+                {/block:PostNotes}
+              {/block:IfShowNotes}
+            </section>
+          {/block:PermalinkPage}
+        {/block:Posts}
+        {block:PermalinkPage}
+          {block:IfDisqusShortname}
+            {block:PermalinkPage}
+              <section id="comments" class="comment-view card">
+                <div id="disqus_thread"></div>
+                <script>
+                  var disqus_shortname = '{text:Disqus Shortname}';
+                  var disqus_url = '{Permalink}';
+                  var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
+
+                  (function() {
+                    var dsq = document.createElement('script');
+
+                    dsq.type = 'text/javascript';
+                    dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+                </script>
+              </section>
+            {/block:PermalinkPage}
+          {/block:IfDisqusShortname}
+        {/block:PermalinkPage}
+      </section>
+      <section class="pagination">
+        {block:Pagination}
+          {block:IfNotEnablePagination}
+            {block:NextPage}
+              <a class="button load-more" id="jsLoadMore" href="{NextPage}"><span class="small">{lang:Load more posts}</span></a>
+            {/block:NextPage}
+          {block:IfNotEnablePagination}
+          {block:IfEnablePagination}
+            {block:PreviousPage}<a href="{PreviousPage}" class="newerlink button"><span class="small">« {lang:Newer posts}</span></a>{/block:PreviousPage}
+            {block:NextPage}<a href="{NextPage}" class="olderlink button"><span class="small">{lang:Older posts} »</span></a>{/block:NextPage}
+          {/block:IfEnablePagination}
+        {/block:Pagination}
+        {block:PermalinkPagination}
+          {block:NextPost}<a href="{NextPost}" class="newerlink button"><span class="small">« {lang:Next post}</span></a>{/block:NextPost}
+          {block:PreviousPost}<a href="{PreviousPost}" class="olderlink button"><span class="small">{lang:Previous post} »</span></a>{/block:PreviousPost}
+        {/block:PermalinkPagination}
+      </section>
+    </section>
+    <aside class="sidebar">
+      {block:IfShowSearch}
+        <section id="search" class="search card">
+          <form action="/search" method="get">
+            <input type="text" class="search__field" name="q" placeholder="{lang:Search}..." value="{SearchQuery}" />
+            <input type="submit" value="ô" class="search__submit" />
+          </form>
+        </section>
+      {/block:IfShowSearch}
+      {block:IfShowDescriptionInFooter}
+          {block:Description}
+            <section class="footer-description">
+              <div class="content">{Description}</div>
+              <h3 class="widget-heading">{lang:About}</h3>
+            </section>
+          {/block:Description}
+        {/block:IfShowDescriptionInFooter}
+      <ul class="social">
+        {block:Twitter}<li class="social__link--twitter"><a href="http://twitter.com/{TwitterUsername}">Twitter</a></li>{/block:Twitter}
+        {block:IfInstagramUsername}<li class="social__link--instagram"><a href="http://instagram.com/{text:Instagram Username}">Instagram</a></li>{/block:IfInstagramUsername}
+        {block:IfFacebookUsername}<li class="social__link--facebook"><a href="http://facebook.com/{text:Facebook Username}">Facebook</a></li>{/block:IfFacebookUsername}
+        {block:IfDribbbleUsername}<li class="social__link--dribbble"><a href="http://dribbble.com/{text:Dribbble Username}">Dribbble</a></li>{/block:IfDribbbleUsername}
+        {block:IfLastfmUsername}<li class="social__link--lastfm"><a href="http://lastfm.com/users/{text:Lastfm Username}">Last.fm</a></li>{/block:IfLastfmUsername}
+        {block:IfYouTubeUsername}<li class="social__link--youtube"><a href="http://youtube.com/{text:YouTube Username}">YouTube</a></li>{/block:IfYouTubeUsername}
+        {block:IfFlickrUsername}<li class="social__link--flickr"><a href="http://flickr.com/photos/{text:Flickr Username}">Flickr</a></li>{/block:IfFlickrUsername}
+        {block:IfFoursquareUsername}<li class="social__link--foursquare"><a href="http://foursquare.com/{text:Foursquare Username}">Foursquare</a></li>{/block:IfFoursquareUsername}
+        {block:IfVimeoUsername}<li class="social__link--vimeo"><a href="http://vimeo.com/{text:Vimeo Username}">Vimeo</a></li>{/block:IfVimeoUsername}
+      </ul>
+      {block:Twitter}
+        <section id="twitter" class="twitter card" style="display:none;">
+          <ul id="tweets" class="tweets"></ul>
+          <h3 class="widget-heading"><a href="http://twitter.com/{TwitterUsername}">Twitter</a></h3>
+        </section>
+
+        <script>
+          function recent_tweets (data) {
+            for (var i = 0; i < 3; i++) {
+              document.getElementById("tweets").innerHTML += "<li class=\"tweet\">" + data[i].text + "</li>";
+            }
+
+            document.getElementById("twitter").style.display = "block";
+          }
+        </script>
+      {/block:Twitter}
+      {block:IfShowFollowings}
+        {block:Following}
+          <section id="following" class="following card">
+            <ul class="following__list">
+              {block:Followed}
+                <li>
+                  <a href="{FollowedURL}" {Target} title="{FollowedTitle}">
+                    <img src="{FollowedPortraitURL-64}" alt="{FollowedTitle}">
+                  </a>
+                </li>
+              {/block:Followed}
+            </ul>
+            <h3 class="widget-heading">{lang:People I follow}</h3>
+          </section>
+        {/block:Following}
+      {/block:IfShowFollowings}
+    </aside>
+    <footer>
+      <div class="small copyright">
+        <a href="http://readrtheme.tumblr.com" title="Readr Theme on Tumblr">Readr Theme</a> by <a href="http://sachaschmid.ch" title="Sacha Schmid's personal web site">Sacha Schmid</a>. Get Readr from the <a href="http://www.tumblr.com/theme/31731" title="{lang:Install this theme}">Theme Garden</a>. {lang:Powered by Tumblr 2}.
+      </div>
+    </footer>
+    <script>
+      // Load localised strings and theme options in here so they can be used from within the referenced script file
+      // For more information on localised strings, see Tumblr's reference document: http://www.tumblr.com/docs/en/localizing_themes
+      localisedStrings = {
+        loadMore: '{lang:Load more posts}',
+        loading: '{lang:Loading}'
+      },
+      variables = {
+        {block:IfGoogleAnalyticsTrackingCode}gaTrackingCode: {text:Google Analytics Tracking Code}{/block:IfGoogleAnalyticsTrackingCode}
+      }
+      options = {
+        {block:IfKeyboardNavigation}keyboardNav: true,{/block:IfKeyboardNavigation}
+        {block:IfShowWordCount}wordCount: true,{/block:IfShowWordCount}
+        {block:PermalinkPage}permalink: true,{/block:PermalinkPage}
+        {block:IfGoogleAnalyticsTrackingCode}gaTracking: true,{/block:IfGoogleAnalyticsTrackingCode}
+        {block:IfAnimatePageScrolling}animatePageScrolling: true{/block:IfAnimatePageScrolling}
+      }
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://dl.dropbox.com/u/2209404/Reader/js/main.js"></script>
+    {block:Twitter}
+      <script type="text/javascript" src="/tweets.js"></script>
+    {/block:Twitter}
+  </body>
+</html>

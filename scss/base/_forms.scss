@@ -1,0 +1,15 @@
+input::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+input::-moz-placeholder {
+  font-style: italic;
+}
+
+input[type="text"] {
+  cursor: pointer;
+
+  &:focus {
+    cursor: text;
+  }
+}

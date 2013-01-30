@@ -1,0 +1,59 @@
+.notes {
+  padding-left: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  list-style: none;
+
+  li {
+    padding: 0.9375em 0;
+    border-top: 1px solid #eee;
+
+    &:first-child,
+    &.more_notes_link_container {
+      border-top: 0;
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &.more_notes_link_container {
+      @extend .button;
+
+      padding-top: 0;
+      margin-top: 1.5em;
+    }
+  }
+
+  .more_notes_link {
+    max-width: none;
+  }
+
+  blockquote {
+    margin-top: 0.375em;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+
+  img {
+    margin-right: 0.5em;
+    border-radius: 100%;
+    vertical-align: middle;
+  }
+
+  .action a {
+    display: inline-block;
+    max-width: 30%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    hyphens: none;
+  }
+}

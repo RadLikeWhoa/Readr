@@ -1,0 +1,18 @@
+/* ------------------------------ *\
+
+  PAGINATION
+
+\* ------------------------------ */
+
+.pagination {
+  @extend %clearfix;
+}
+
+a.olderlink,
+a.newerlink {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.newerlink { float: left; }
+.olderlink { float: right; }

@@ -1,0 +1,14 @@
+.icon::before,
+.search__submit {
+  font-family: Entypo;
+  @include font-size(32px, 11px);
+  font-style: normal;
+  font-weight: normal;
+  vertical-align: text-top;
+  -webkit-font-smoothing: antialiased;
+  speak: none;
+}
+
+.icon-like::before { content: "6"; }
+.icon-reblog::before { content: "h"; }
+.icon-perma::before { content: ">"; }
