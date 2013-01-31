@@ -3,13 +3,13 @@
   @extend %unstyled;
 
   margin-bottom: 0;
-
-  @include break(small) {
-    margin-left: -1.5em;
-  }
+  margin-left: -1.5em;
 }
 
 .social__link {
+  float: left;
+  width: 50%;
+  padding-left: 1.5em;
   margin-bottom: 1.5em;
   font-weight: bold;
 
@@ -22,21 +22,7 @@
     color: #fff;
   }
 
-  &:last-child {
-    margin-bottom: 3em;
-
-    @include break(small) {
-      margin-bottom: 4.5em;
-    }
-  }
-
   @include break(small) {
-    float: left;
-    width: 50%;
-    padding-left: 1.5em;
-  }
-
-  @include break(medium) {
     width: 33.333%;
   }
 

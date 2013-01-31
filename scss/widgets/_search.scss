@@ -1,5 +1,8 @@
 .search {
   position: relative;
+  max-width: 25em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search__submit {
@@ -21,10 +24,12 @@
   margin: 0;
   border: 1px solid #fff;
   outline: none;
-  @include transition(border-color 0.25s ease-in-out);
+  @include transition(border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out);
   @include appearance(none);
 
   &:focus {
     border: 1px solid #4cadeb;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
   }
 }

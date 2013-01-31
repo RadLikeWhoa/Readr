@@ -11,6 +11,10 @@
     width: 100%;
     @include background-image(linear-gradient(left, rgba(#1e1e1e, 0), rgba(#1e1e1e, 0.25), rgba(#1e1e1e, 0)));
   }
+
+  .description {
+    margin-top: 1.5em;
+  }
 }
 
 .site-header__wrap {
@@ -18,11 +22,8 @@
 }
 
 .blog-heading {
+  margin-bottom: 0;
   text-align: center;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 
 .description {
@@ -31,5 +32,22 @@
 
   &:last-child {
     margin-bottom: 0;
+  }
+}
+
+.site-icons {
+  @extend %clearfix;
+  text-align: center;
+}
+
+a.site-link {
+  display: inline-block;
+  min-width: 3em;
+  margin-top: 1.5em;
+  margin-left: 1em;
+  text-align: center;
+
+  &:first-child {
+    margin-left: 0;
   }
 }

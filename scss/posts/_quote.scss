@@ -1,7 +1,5 @@
 .quote blockquote {
   @extend %rounded;
-
-  font-family: $quote-post-face;
   @include rem(padding, 48px);
   margin-right: 0;
   margin-left: 0;

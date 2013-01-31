@@ -1,7 +1,28 @@
+/**
+ * Readr
+ *
+ * Author: Sacha Schmid
+ * Version: 2.0
+ * Last modified: January 31, 2013
+ */
+
+/**
+ * _vars and _mixins serve as starting points to alter facets of the design.
+ * Minor changes, like border radii etc. should be made here.
+ */
+
 @import "vars";
 @import "mixins";
 
+/**
+ * Readr depends on Compass for some CSS3 mixins.
+ */
+
 @import "compass";
+
+/**
+ * Import basic styles, like fonts, typography, and a reset.
+ */
 
 @import "base/reset";
 @import "base/shared";
@@ -17,6 +38,11 @@
 @import "base/quotations";
 @import "base/smallprint";
 
+/**
+ * Import post-specific styles. Note that text posts don't have their own
+ * stylesheets as their design is handled through the basic styles.
+ */
+
 @import "posts/common";
 @import "posts/meta";
 @import "posts/info";
@@ -26,11 +52,21 @@
 @import "posts/quote";
 @import "posts/video";
 
+/**
+ * Import styles to set the general layout for the page. That includes regions
+ * like the header and the footer.
+ */
+
 @import "sections/header";
 @import "sections/main";
 @import "sections/pagination";
 @import "sections/sidebar";
 @import "sections/footer";
+
+/**
+ * Widgets are similar to sections, but they cover a much smaller area. Widgets
+ * are, e.g. the latest tweets or the following list.
+ */
 
 @import "widgets/common";
 @import "widgets/following";
