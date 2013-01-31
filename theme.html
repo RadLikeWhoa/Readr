@@ -31,10 +31,7 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <meta name="font:Default" content="Source Sans Pro, sans-serif">
-    <meta name="font:Quotes" content="Droid Serif, serif">
     <meta name="image:Page Background" content="">
-    <meta name="image:Header" content=""> <!-- IMP -->
     <meta name="if:Animate Page Scrolling" content="1">
     <meta name="if:Enable Pagination" content="0">
     <meta name="if:Enable Twitter Widget" content="1">
@@ -89,14 +86,6 @@
         }
       {/block:IfHighlightIntroParagraphs}
 
-      html {
-        font-family: {font:Default};
-      }
-
-      .quote blockquote {
-        font-family: {font:Quotes};
-      }
-
       {CustomCSS}
     </style>
   </head>
@@ -127,8 +116,8 @@
               <div class="post-meta">
                 <ul class="post-meta__list">
                   {block:IndexPage}<li class="post-meta__item button"><a href="{Permalink}"><span aria-hidden="true" class="icon icon-perma"></span></a></li>{/block:IndexPage}
-                  <li class="post-meta__item button"><a href=""><span aria-hidden="true" class="icon icon-like"></span></a></li>
-                  <li class="post-meta__item button"><a href=""><span aria-hidden="true" class="icon icon-reblog"></span></a></li>
+                  <li class="post-meta__item button"><a href="" data-url="{Permalink}"><span aria-hidden="true" class="icon icon-like"></span></a></li>
+                  <li class="post-meta__item button"><a href="" data-url="{Permalink}"><span aria-hidden="true" class="icon icon-reblog"></span></a></li>
                 </ul>
               </div>
             {/block:IfShowPostActions}

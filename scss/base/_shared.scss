@@ -8,3 +8,26 @@ pre,
 article .body {
   @include rem(margin-bottom, 24px);
 }
+
+article,
+.load_more,
+.pagination .button:last-child,
+.following,
+.search,
+.comment-view,
+.post-summary,
+article .body:last-child,
+article .reblogged,
+.img,
+.video-wrapper,
+.html_photoset,
+.album,
+.site-header,
+.twitter,
+.footer-description {
+  margin-bottom: 3em;
+
+  @include break(small) {
+    margin-bottom: 4.5em;
+  }
+}

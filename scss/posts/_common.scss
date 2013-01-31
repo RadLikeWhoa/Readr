@@ -54,31 +54,6 @@ article p {
   }
 }
 
-// DOUBLE CHECK
-
-article,
-.load_more,
-.pagination .button:last-child,
-.following,
-.search,
-.comment-view,
-.post-summary,
-article .body:last-child,
-article .reblogged,
-.img,
-.video-wrapper,
-.html_photoset,
-.album,
-.site-header,
-.twitter,
-.footer-description {
-  margin-bottom: 3em;
-
-  @include break(small) {
-    margin-bottom: 4.5em;
-  }
-}
-
 .text,
 .link {
   .post {

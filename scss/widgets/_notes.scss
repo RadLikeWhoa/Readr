@@ -10,11 +10,8 @@
 
     &:first-child,
     &.more_notes_link_container {
-      border-top: 0;
-    }
-
-    &:first-child {
       padding-top: 0;
+      border-top: 0;
     }
 
     &:last-child {
@@ -24,7 +21,6 @@
     &.more_notes_link_container {
       @extend .button;
 
-      padding-top: 0;
       margin-top: 1.5em;
     }
   }
