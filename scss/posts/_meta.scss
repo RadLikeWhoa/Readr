@@ -1,10 +1,6 @@
-.no-touch article:hover {
-  @include break(medish) {
-    left: auto;
-  }
-}
+// Not working in Opera
 
-.no-touch article:hover,
+article:hover,
 .swiped {
   @include transform(translateX(-4.5em));
 

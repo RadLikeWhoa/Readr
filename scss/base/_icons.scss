@@ -1,7 +1,9 @@
+// Not working in Firefox
+
 .icon::before,
 .search__submit {
   font-family: Entypo;
-  @include font-size(32px, 11px);
+  @include font-size(32px, 12px);
   font-style: normal;
   font-weight: normal;
   vertical-align: text-top;
