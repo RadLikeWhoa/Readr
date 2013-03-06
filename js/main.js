@@ -49,11 +49,11 @@ var Readr = (function () {
          * While it would easily be possible to count words in other post types
          * too, to me, it only really makes sense with text posts.
          *
-         * Change `info.prev('.text')` to `info.prev('article')` if you want to
-         * count all post types.
+         * Change `info.parent().prev('.text')` to
+         * `info.parent().prev('article')` if you want to count all post types.
          */
 
-        var text = info.prev('.text')[0],
+        var text = info.parent().prev('.text')[0],
             words = text ? self.countwords($(text).find('.body').text()) : 0;
 
         /**
@@ -65,7 +65,7 @@ var Readr = (function () {
          */
 
         if (words) {
-          info.find('ul').append('<li class="info-child"><b>Words: </b>' + words + ' words</li>');
+          info.append('<li class="info-child"><b>Words: </b>' + words + ' words</li>');
         }
       }
     },
@@ -180,7 +180,7 @@ var Readr = (function () {
           articles = $(document.getElementById('posts')).find('article'),
           offset = 0;
 
-      if (direction === "next") {
+      if (direction === 'next') {
 
         /**
          * Loop through the posts. As soon as a post is discovered having an
@@ -193,7 +193,7 @@ var Readr = (function () {
 
           if (offset > scrollTop) {
             scrollTo(offset);
-            break;
+            return;
           }
         }
 
@@ -206,7 +206,7 @@ var Readr = (function () {
           scrollTo($(loadMore).offset().top - KEYBOARD_NAVIGATION_PADDING);
           self.loadPosts();
         }
-      } else if (direction === "prev") {
+      } else if (direction === 'prev') {
 
         /**
          * Loop through the posts. As soon as a post is discovered having an
@@ -218,7 +218,7 @@ var Readr = (function () {
           offset = $(articles[i]).offset().top - KEYBOARD_NAVIGATION_PADDING;
 
           if (offset >= scrollTop) {
-            scrollTo(0 < i ? $(articles[i - 1]).offset().top : 0);
+            scrollTo(0 < i ? $(articles[i - 1]).offset().top - KEYBOARD_NAVIGATION_PADDING : 0);
             return;
           }
         }
@@ -249,9 +249,9 @@ var Readr = (function () {
            */
 
           if (39 === code || 74 === code) {
-            self.pageNavigation("next");
+            self.pageNavigation('next');
           } else if (37 === code || 75 === code) {
-            self.pageNavigation("prev");
+            self.pageNavigation('prev');
           }
         });
       }
@@ -266,6 +266,14 @@ var Readr = (function () {
           e.preventDefault();
           self.loadPosts();
         });
+      }
+    },
+
+    detectTouch: function () {
+      if (!touch) {
+        document.body.classList.add('no-touch');
+      } else {
+        self.bindTouchActions();
       }
     },
 
@@ -355,7 +363,7 @@ var Readr = (function () {
 
       self.writeWordNumber();
       self.bindUIActions();
-      if (touch) self.bindTouchActions();
+      self.detectTouch();
     }
 
   };

@@ -1,6 +1,6 @@
 // Not working in Opera
 
-article:hover,
+.no-touch article:hover,
 .swiped {
   @include transform(translateX(-4.5em));
 
