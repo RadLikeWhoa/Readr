@@ -33,6 +33,7 @@
     <![endif]-->
     <meta name="image:Page Background" content="">
     <meta name="if:Animate Page Scrolling" content="1">
+    <meta name="if:Always Show Post Actions" content="0">
     <meta name="if:Enable Pagination" content="0">
     <meta name="if:Enable Twitter Widget" content="1">
     <meta name="if:Full Page Background" content="1">
@@ -89,17 +90,25 @@
       {CustomCSS}
     </style>
   </head>
-  <body>
+  <body class="{block:IndexPage}page--index{/block:IndexPage}{block:PermalinkPage}page--permalink{/block:PermalinkPage}">
     <header class="site-header">
       <div class="site-header__wrap">
-        <h1 class="h2 blog-heading">
-          <a href="/" title="{lang:Home}">{Title}</a>
-        </h1>
+        <h1 class="h2 blog-heading"><a href="/" title="{lang:Home}">{Title}</a></h1>
         <div class="site-icons">
-          {block:IfShowRssLinkInNavigation}<a href="/rss" class="site-link button icon icon-rss"></a>{/block:IfShowRssLinkInNavigation}
-          {block:AskEnabled}{block:IfShowAskLinkInNavigation}<a href="/ask" class="site-link button icon icon-ask"></a>{/block:IfShowAskLinkInNavigation}{/block:AskEnabled}
-          {block:IfShowArchiveLinkInNavigation}<a href="/archive" class="site-link button icon icon-archive"></a>{/block:IfShowArchiveLinkInNavigation}
-          {block:IfShowRandomPostLinkInNavigation}<a href="/random" class="site-link button icon icon-random"></a>{/block:IfShowRandomPostLinkInNavigation}
+          {block:IfShowRssLinkInNavigation}
+            <a href="/rss" class="site-link button icon icon-rss"></a>
+          {/block:IfShowRssLinkInNavigation}
+          {block:IfShowAskLinkInNavigation}
+            {block:AskEnabled}
+              <a href="/ask" class="site-link button icon icon-ask"></a>
+            {/block:AskEnabled}
+          {/block:IfShowAskLinkInNavigation}
+          {block:IfShowArchiveLinkInNavigation}
+            <a href="/archive" class="site-link button icon icon-archive"></a>
+          {/block:IfShowArchiveLinkInNavigation}
+          {block:IfShowRandomPostLinkInNavigation}
+            <a href="/random" class="site-link button icon icon-random"></a>
+          {/block:IfShowRandomPostLinkInNavigation}
         </div>
         {block:IfNotShowDescriptionInFooter}
           {block:Description}
@@ -109,26 +118,15 @@
       </div>
     </header>
     <section class="main-content">
-      <section class="posts" id="posts">
+      <section class="posts{block:IfNotAlwaysShowPostActions} swipe-actions{/block:IfNotAlwaysShowPostActions}" id="posts">
         {block:Posts}
           <article class="{PostType}">
-            {block:IfShowPostActions}
-              <div class="post-meta">
-                <ul class="post-meta__list">
-                  {block:IndexPage}<li class="post-meta__item button"><a href="{Permalink}"><span aria-hidden="true" class="icon icon-perma"></span></a></li>{/block:IndexPage}
-                  <li class="post-meta__item button"><a href="" data-url="{Permalink}"><span aria-hidden="true" class="icon icon-like"></span></a></li>
-                  <li class="post-meta__item button"><a href="" data-url="{Permalink}"><span aria-hidden="true" class="icon icon-reblog"></span></a></li>
-                </ul>
-              </div>
-            {/block:IfShowPostActions}
             <div class="post card">
               {block:Text}
                 {block:Title}
                   <h2 class="post-title"><a href="{Permalink}" title="{lang:Permalink for this post}">{Title}</a></h2>
                 {/block:Title}
-                <div class="body {TagsAsClasses}">
-                  {Body}
-                </div>
+                <div class="body {TagsAsClasses}">{Body}</div>
                 {block:More}
                   <p><a href="{Permalink}" title="{lang:Permalink for this post}">{lang:Read more}</a></p>
                 {/block:More}
@@ -136,7 +134,7 @@
               {block:Photo}
                 <div class="img">
                   {LinkOpenTag}
-                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-500}" class="photo-content" />
+                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" width="{PhotoWidth-500}" class="photo-content">
                   {LinkCloseTag}
                 </div>
                 {block:Caption}
@@ -146,7 +144,7 @@
               {block:Panorama}
                 <div class="img">
                   {LinkOpenTag}
-                    <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" width="{PhotoWidth-Panorama}" class="photo-content" />
+                    <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" width="{PhotoWidth-Panorama}" class="photo-content">
                   {LinkCloseTag}
                 </div>
                 {block:Caption}
@@ -196,7 +194,7 @@
                 <div class="album">
                   <div class="artwork {block:AlbumArt}has-cover{/block:AlbumArt}">
                     {block:AlbumArt}
-                      <img src="{AlbumArtURL}" class="cover" {block:TrackName}title="{TrackName}" alt="{TrackName}"{/block:TrackName} />
+                      <img src="{AlbumArtURL}" class="cover" {block:TrackName}title="{TrackName}" alt="{TrackName}"{/block:TrackName}>
                     {/block:AlbumArt}
                     <span class="player">{AudioPlayerBlack}</span>
                   </div>
@@ -254,6 +252,17 @@
                 {/block:PermalinkPage}
               {/block:RebloggedFrom}
             </div>
+            {block:IfShowPostActions}
+              <div class="post-meta{block:IfAlwaysShowPostActions} horizontal{/block:IfAlwaysShowPostActions}">
+                <ul class="post-meta__list">
+                  {block:IndexPage}
+                    <li class="post-meta__item button"><a href="{Permalink}"><span aria-hidden="true" class="icon icon-perma"></span></a></li>
+                  {/block:IndexPage}
+                  <li class="post-meta__item button"><a href="" data-url="{Permalink}"><span aria-hidden="true" class="icon icon-like"></span></a></li>
+                  <li class="post-meta__item button"><a href="" data-url="{Permalink}"><span aria-hidden="true" class="icon icon-reblog"></span></a></li>
+                </ul>
+              </div>
+            {/block:IfShowPostActions}
           </article>
           {block:PermalinkPage}
             <section class="post-summary card">
@@ -305,19 +314,16 @@
               <section id="comments" class="comment-view card">
                 <div id="disqus_thread"></div>
                 <script>
-                  var disqus_shortname = '{text:Disqus Shortname}';
-                  var disqus_url = '{Permalink}';
-                  var disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
+                  var disqus_shortname = '{text:Disqus Shortname}',
+                      disqus_url = '{Permalink}',
+                      disqus_title = '{block:PostTitle}{PostTitle}{/block:PostTitle}';
 
-                  (function() {
-                    var dsq = document.createElement('script');
-
-                    dsq.type = 'text/javascript';
-                    dsq.async = true;
-                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-
-                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                  })();
+                  (function(d, t) {
+                    var g = d.createElement(t),
+                        s = d.getElementsByTagName(t)[0];
+                    g.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    s.parentNode.insertBefore(g, s);
+                  }(document, 'script'));
                 </script>
               </section>
             {/block:PermalinkPage}
@@ -332,13 +338,21 @@
             {/block:NextPage}
           {block:IfNotEnablePagination}
           {block:IfEnablePagination}
-            {block:PreviousPage}<a href="{PreviousPage}" class="newerlink button"><span class="small">« {lang:Newer posts}</span></a>{/block:PreviousPage}
-            {block:NextPage}<a href="{NextPage}" class="olderlink button"><span class="small">{lang:Older posts} »</span></a>{/block:NextPage}
+            {block:PreviousPage}
+              <a href="{PreviousPage}" class="newerlink button"><span class="small">« {lang:Newer posts}</span></a>
+            {/block:PreviousPage}
+            {block:NextPage}
+              <a href="{NextPage}" class="olderlink button"><span class="small">{lang:Older posts} »</span></a>
+            {/block:NextPage}
           {/block:IfEnablePagination}
         {/block:Pagination}
         {block:PermalinkPagination}
-          {block:NextPost}<a href="{NextPost}" class="newerlink button"><span class="small">« {lang:Next post}</span></a>{/block:NextPost}
-          {block:PreviousPost}<a href="{PreviousPost}" class="olderlink button"><span class="small">{lang:Previous post} »</span></a>{/block:PreviousPost}
+          {block:NextPost}
+            <a href="{NextPost}" class="newerlink button"><span class="small">« {lang:Next post}</span></a>
+          {/block:NextPost}
+          {block:PreviousPost}
+            <a href="{PreviousPost}" class="olderlink button"><span class="small">{lang:Previous post} »</span></a>
+          {/block:PreviousPost}
         {/block:PermalinkPagination}
       </section>
     </section>
@@ -368,11 +382,8 @@
 
           <script>
             function recent_tweets (data) {
-              for (var i = 0; i < 3; i++) {
-                document.getElementById("tweets").innerHTML += "<li class=\"tweet\">" + data[i].text + "</li>";
-              }
-
-              document.getElementById("twitter").style.display = "block";
+              document.getElementById('tweets').innerHTML = '<li class="tweet">' + data[0].text + '</li><li class="tweet">' + data[1].text + '</li><li class="tweet">' + data[2].text + '</li>';
+              document.getElementById('twitter').style.display = 'block';
             }
           </script>
         {/block:IfEnableTwitterWidget}
@@ -394,15 +405,33 @@
         {/block:Following}
       {/block:IfShowFollowings}
       <ul class="social">
-        {block:Twitter}<li class="social__link--twitter"><a href="http://twitter.com/{TwitterUsername}">Twitter</a></li>{/block:Twitter}
-        {block:IfInstagramUsername}<li class="social__link--instagram"><a href="http://instagram.com/{text:Instagram Username}">Instagram</a></li>{/block:IfInstagramUsername}
-        {block:IfFacebookUsername}<li class="social__link--facebook"><a href="http://facebook.com/{text:Facebook Username}">Facebook</a></li>{/block:IfFacebookUsername}
-        {block:IfDribbbleUsername}<li class="social__link--dribbble"><a href="http://dribbble.com/{text:Dribbble Username}">Dribbble</a></li>{/block:IfDribbbleUsername}
-        {block:IfLastfmUsername}<li class="social__link--lastfm"><a href="http://lastfm.com/users/{text:Lastfm Username}">Last.fm</a></li>{/block:IfLastfmUsername}
-        {block:IfYouTubeUsername}<li class="social__link--youtube"><a href="http://youtube.com/{text:YouTube Username}">YouTube</a></li>{/block:IfYouTubeUsername}
-        {block:IfFlickrUsername}<li class="social__link--flickr"><a href="http://flickr.com/photos/{text:Flickr Username}">Flickr</a></li>{/block:IfFlickrUsername}
-        {block:IfFoursquareUsername}<li class="social__link--foursquare"><a href="http://foursquare.com/{text:Foursquare Username}">Foursquare</a></li>{/block:IfFoursquareUsername}
-        {block:IfVimeoUsername}<li class="social__link--vimeo"><a href="http://vimeo.com/{text:Vimeo Username}">Vimeo</a></li>{/block:IfVimeoUsername}
+        {block:Twitter}
+          <li class="social__link--twitter"><a href="http://twitter.com/{TwitterUsername}">Twitter</a></li>
+        {/block:Twitter}
+        {block:IfInstagramUsername}
+          <li class="social__link--instagram"><a href="http://instagram.com/{text:Instagram Username}">Instagram</a></li>
+        {/block:IfInstagramUsername}
+        {block:IfFacebookUsername}
+          <li class="social__link--facebook"><a href="http://facebook.com/{text:Facebook Username}">Facebook</a></li>
+        {/block:IfFacebookUsername}
+        {block:IfDribbbleUsername}
+          <li class="social__link--dribbble"><a href="http://dribbble.com/{text:Dribbble Username}">Dribbble</a></li>
+        {/block:IfDribbbleUsername}
+        {block:IfLastfmUsername}
+          <li class="social__link--lastfm"><a href="http://lastfm.com/users/{text:Lastfm Username}">Last.fm</a></li>
+        {/block:IfLastfmUsername}
+        {block:IfYouTubeUsername}
+          <li class="social__link--youtube"><a href="http://youtube.com/{text:YouTube Username}">YouTube</a></li>
+        {/block:IfYouTubeUsername}
+        {block:IfFlickrUsername}
+          <li class="social__link--flickr"><a href="http://flickr.com/photos/{text:Flickr Username}">Flickr</a></li>
+        {/block:IfFlickrUsername}
+        {block:IfFoursquareUsername}
+          <li class="social__link--foursquare"><a href="http://foursquare.com/{text:Foursquare Username}">Foursquare</a></li>
+        {/block:IfFoursquareUsername}
+        {block:IfVimeoUsername}
+          <li class="social__link--vimeo"><a href="http://vimeo.com/{text:Vimeo Username}">Vimeo</a></li>
+        {/block:IfVimeoUsername}
       </ul>
     </aside>
     <footer>
@@ -411,21 +440,39 @@
       </div>
     </footer>
     <script>
-      // Load localised strings and theme options in here so they can be used from within the referenced script file
-      // For more information on localised strings, see Tumblr's reference document: http://www.tumblr.com/docs/en/localizing_themes
+      /**
+       * Load localised strings and theme options in here so they can be used
+       * from within the referenced script file
+       *
+       * For more information on localised strings, see Tumblr's reference
+       * document: http://cl.ly/NOlP
+       */
+
       localisedStrings = {
         loadMore: '{lang:Load more posts}',
         loading: '{lang:Loading}'
       },
       variables = {
-        {block:IfGoogleAnalyticsTrackingCode}gaTrackingCode: {text:Google Analytics Tracking Code}{/block:IfGoogleAnalyticsTrackingCode}
+        {block:IfGoogleAnalyticsTrackingCode}
+          gaTrackingCode: {text:Google Analytics Tracking Code}
+        {/block:IfGoogleAnalyticsTrackingCode}
       }
       options = {
-        {block:IfKeyboardNavigation}keyboardNav: true,{/block:IfKeyboardNavigation}
-        {block:IfShowWordCount}wordCount: true,{/block:IfShowWordCount}
-        {block:PermalinkPage}permalink: true,{/block:PermalinkPage}
-        {block:IfGoogleAnalyticsTrackingCode}gaTracking: true,{/block:IfGoogleAnalyticsTrackingCode}
-        {block:IfAnimatePageScrolling}animatePageScrolling: true{/block:IfAnimatePageScrolling}
+        {block:IfKeyboardNavigation}
+          keyboardNav: true,
+        {/block:IfKeyboardNavigation}
+        {block:IfShowWordCount}
+          wordCount: true,
+        {/block:IfShowWordCount}
+        {block:PermalinkPage}
+          permalink: true,
+        {/block:PermalinkPage}
+        {block:IfGoogleAnalyticsTrackingCode}
+          gaTracking: true,
+        {/block:IfGoogleAnalyticsTrackingCode}
+        {block:IfAnimatePageScrolling}
+          animatePageScrolling: true
+        {/block:IfAnimatePageScrolling}
       }
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>

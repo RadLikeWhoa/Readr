@@ -1,7 +1,7 @@
 // Not working in Opera
 
-.no-touch article:hover,
-.swiped {
+.no-touch .swipe-actions article:hover,
+ .swipe-actions .swiped {
   @include transform(translateX(-4.5em));
 
   .post-meta {
@@ -38,6 +38,10 @@
   margin-top: -4.5em;
 }
 
+.page--permalink .post-meta__list {
+  margin-top: -3em;
+}
+
 .post-meta__item {
   width: 100%;
   padding: 0;
@@ -53,5 +57,51 @@
   &:last-child {
     border-bottom: 0;
     border-radius: 0 0 $rounding $rounding;
+  }
+}
+
+.post-meta.horizontal {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin-top: -1.5em;
+  opacity: 1;
+  z-index: 1;
+  @include transform(none);
+
+  .post-meta__list {
+    @extend %clearfix;
+
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 9em;
+    margin: 0 auto;
+  }
+
+  .post-meta__item {
+    float: left;
+    width: 33.333%;
+    border-bottom: 0;
+    border-right: 1px solid #eee;
+
+    &:first-child {
+      border-radius: $rounding 0 0 $rounding;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+      border-radius: 0 $rounding $rounding 0;
+    }
+  }
+}
+
+.page--permalink .post-meta.horizontal {
+  .post-meta__list {
+    width: 6em;
+  }
+
+  .post-meta__item {
+    width: 50%;
   }
 }

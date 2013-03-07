@@ -120,7 +120,7 @@ var Readr = (function () {
            * post, otherwise the request should not have been possible.
            */
 
-          if (posts.length > 0) {
+          if (posts.length) {
             $(document.getElementById('posts')).append(posts);
 
             /**
