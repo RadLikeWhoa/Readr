@@ -35,6 +35,10 @@
   }
 }
 
+.blog-logo {
+  display: block;
+}
+
 .site-icons {
   @extend %clearfix;
   text-align: center;

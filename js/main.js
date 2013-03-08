@@ -22,8 +22,11 @@ var Readr = (function () {
       touch = 'ontouchstart' in document.documentElement,
       isLoading = false,
       doc = $(document),
-      loadMore = document.getElementById('jsLoadMore'),
-      scrollTo = function (point) {
+      loadMore = document.getElementById('jsLoadMore');
+
+  return {
+
+    scrollTo: function (point) {
 
         /**
          * Scrolling through posts using keyboard navigation (j/k) can either
@@ -32,42 +35,37 @@ var Readr = (function () {
          */
 
         if (options.animatePageScrolling) {
-            $('html, body').animate({scrollTop: point}, SMOOTH_SCROLLING_SPEED);
-          } else {
-            doc.scrollTop(point);
-          }
-      };
-
-  return {
+          $('html, body').animate({scrollTop: point}, SMOOTH_SCROLLING_SPEED);
+        } else {
+          doc.scrollTop(point);
+        }
+      },
 
     writeWordNumber: function () {
       var info = $('.post-info');
 
-      if (info.length) {
+      if (!info.length) return;
 
-        /**
-         * While it would easily be possible to count words in other post types
-         * too, to me, it only really makes sense with text posts.
-         *
-         * Change `info.parent().prev('.text')` to
-         * `info.parent().prev('article')` if you want to count all post types.
-         */
+      /**
+       * While it would easily be possible to count words in other post types
+       * too, to me, it only really makes sense with text posts.
+       *
+       * Change `info.parent().prev('.text')` to
+       * `info.parent().prev('article')` if you want to count all post types.
+       */
 
-        var text = info.parent().prev('.text')[0],
-            words = text ? self.countwords($(text).find('.body').text()) : 0;
+      var text = info.parent().prev('.text')[0],
+          words = text ? self.countwords($(text).find('.body').text()) : 0;
 
-        /**
-         * Tumblr lacks a localised string for {words}. While I have already
-         * tried contacting Tumblr about lacking strings, there is hardly any
-         * chance to get them to do something about it.
-         *
-         * (see: http://cl.ly/Mar0)
-         */
+      /**
+       * Tumblr lacks a localised string for {words}. While I have already
+       * tried contacting Tumblr about lacking strings, there is hardly any
+       * chance to get them to do something about it.
+       *
+       * (see: http://cl.ly/Mar0)
+       */
 
-        if (words) {
-          info.append('<li class="info-child"><b>Words: </b>' + words + ' words</li>');
-        }
-      }
+      if (words) info.append('<li class="info-child"><b>Words: </b>' + words + ' words</li>');
     },
 
     countwords: function (text) {
@@ -189,22 +187,20 @@ var Readr = (function () {
          */
 
         for (var i = 0, j = articles.length ; i < j; i++) {
-          offset = $(articles[i]).offset().top - KEYBOARD_NAVIGATION_PADDING;
+          offset = parseInt($(articles[i]).offset().top - KEYBOARD_NAVIGATION_PADDING, 10);
 
           if (offset > scrollTop) {
             scrollTo(offset);
+
+            /**
+             * If a visitor navigates to the penultimate post, load more posts
+             * and scroll down.
+             */
+
+            if (i >= j - 2 && loadMore) self.loadPosts();
+
             return;
           }
-        }
-
-        /**
-         * If a visitor tries to navigate down from the last post, load more
-         * posts and scroll to where they will appear.
-         */
-
-        if (loadMore) {
-          scrollTo($(loadMore).offset().top - KEYBOARD_NAVIGATION_PADDING);
-          self.loadPosts();
         }
       } else if (direction === 'prev') {
 
@@ -214,11 +210,11 @@ var Readr = (function () {
          * the post before it.
          */
 
-        for (var i = 0, j = articles.length ; i < j; i++) {
-          offset = $(articles[i]).offset().top - KEYBOARD_NAVIGATION_PADDING;
+        for (var k = 0, l = articles.length ; k < l; k++) {
+          offset = parseInt($(articles[k]).offset().top - KEYBOARD_NAVIGATION_PADDING, 10);
 
           if (offset >= scrollTop) {
-            scrollTo(0 < i ? $(articles[i - 1]).offset().top - KEYBOARD_NAVIGATION_PADDING : 0);
+            scrollTo(0 < k ? $(articles[k - 1]).offset().top - KEYBOARD_NAVIGATION_PADDING : 0);
             return;
           }
         }
@@ -228,7 +224,7 @@ var Readr = (function () {
          * penultimate post.
          */
 
-        scrollTo($(articles[--i]).offset().top - KEYBOARD_NAVIGATION_PADDING);
+        scrollTo($(articles[--k]).offset().top - KEYBOARD_NAVIGATION_PADDING);
       }
     },
 
@@ -270,10 +266,10 @@ var Readr = (function () {
     },
 
     detectTouch: function () {
-      if (!touch) {
-        document.body.classList.add('no-touch');
-      } else {
+      if (touch) {
         self.bindTouchActions();
+      } else {
+        document.body.classList.add('no-touch');
       }
     },
 
