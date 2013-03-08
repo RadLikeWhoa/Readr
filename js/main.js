@@ -189,8 +189,10 @@ var Readr = (function () {
         for (var i = 0, j = articles.length ; i < j; i++) {
           offset = parseInt($(articles[i]).offset().top - KEYBOARD_NAVIGATION_PADDING, 10);
 
+          console.log(i, j);
+
           if (offset > scrollTop) {
-            scrollTo(offset);
+            self.scrollTo(offset);
 
             /**
              * If a visitor navigates to the penultimate post, load more posts
@@ -214,7 +216,7 @@ var Readr = (function () {
           offset = parseInt($(articles[k]).offset().top - KEYBOARD_NAVIGATION_PADDING, 10);
 
           if (offset >= scrollTop) {
-            scrollTo(0 < k ? $(articles[k - 1]).offset().top - KEYBOARD_NAVIGATION_PADDING : 0);
+            self.scrollTo(0 < k ? $(articles[k - 1]).offset().top - KEYBOARD_NAVIGATION_PADDING : 0);
             return;
           }
         }
@@ -224,7 +226,7 @@ var Readr = (function () {
          * penultimate post.
          */
 
-        scrollTo($(articles[--k]).offset().top - KEYBOARD_NAVIGATION_PADDING);
+        self.scrollTo($(articles[--k]).offset().top - KEYBOARD_NAVIGATION_PADDING);
       }
     },
 
