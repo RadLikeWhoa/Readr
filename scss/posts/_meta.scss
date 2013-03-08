@@ -43,7 +43,7 @@
 }
 
 .post-meta__item {
-  width: 100%;
+  width: 3em;
   padding: 0;
   border-bottom: 1px solid #eee;
   border-radius: 0;
@@ -81,7 +81,6 @@
 
   .post-meta__item {
     float: left;
-    width: 33.333%;
     border-bottom: 0;
     border-right: 1px solid #eee;
 
@@ -96,12 +95,6 @@
   }
 }
 
-.page--permalink .post-meta.horizontal {
-  .post-meta__list {
-    width: 6em;
-  }
-
-  .post-meta__item {
-    width: 50%;
-  }
+.page--permalink .post-meta.horizontal .post-meta__list {
+  width: 6em;
 }
