@@ -12,6 +12,11 @@
   padding-left: 1.5em;
   margin-bottom: 1.5em;
   font-weight: bold;
+  @include transition(transform 0.05s ease-in-out);
+
+  &:hover {
+    @include transform(rotate(4deg));
+  }
 
   a {
     @extend %rounded;

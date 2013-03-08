@@ -8,6 +8,12 @@
   img {
     display: block;
     width: 100%;
+    @include transition(transform 0.05s ease-in-out);
+
+    &:hover {
+      @include transform(scale(1.1));
+      z-index: 999;
+    }
   }
 
   li {
