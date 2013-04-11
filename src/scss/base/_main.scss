@@ -1,5 +1,5 @@
-* {
-  @include box-sizing(border-box);
+@if $useGlobalBoxSizing == true {
+  * { @include box-sizing(border-box); }
 }
 
 /**
@@ -13,10 +13,6 @@ html {
   background-color: #fffaf0;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 

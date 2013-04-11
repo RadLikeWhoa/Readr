@@ -31,12 +31,14 @@
   @return "h#{$level}, .h#{$level}";
 }
 
-@function headings ($levels: 6) {
-  $selector: "";
+@function headings ($from: 1, $to: 6) {
+  @if $from >= 1 and $to <= 6 {
+    $selector: "";
 
-  @for $i from 1 to $levels + 1 {
-    $selector: $selector + heading($i) + ",";
+    @for $i from $from through $to {
+      $selector: $selector + heading($i) + ",";
+    }
+
+    @return $selector;
   }
-
-  @return $selector;
 }
