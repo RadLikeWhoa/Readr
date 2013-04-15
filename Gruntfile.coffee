@@ -66,6 +66,12 @@ module.exports = (grunt) ->
       copy:
         command: 'cat <%= readr.dist %>/theme.html | pbcopy'
 
+    notify:
+      dist:
+        options:
+          title: "Build complete!"
+          message: "Theme built and copied to clipboard."
+
     concurrent:
       dist: [ 'uglify', 'compass:dist' ]
       end: [ 'clean:end', 'shell:copy' ]
@@ -79,6 +85,7 @@ module.exports = (grunt) ->
     'concurrent:dist',
     'replace',
     'concurrent:end'
+    'notify'
   ])
 
   grunt.registerTask('default', [

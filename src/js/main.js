@@ -1,5 +1,3 @@
-// TODO: CHECK
-
 if (options.gaTracking) {
   var _gaq = [['_setAccount', variables.gaTrackingCode], ['_trackPageview']];
   (function (d, t) {
@@ -11,7 +9,7 @@ if (options.gaTracking) {
   }(document, 'script'));
 }
 
-var Readr = (function () {
+var Readr = (function (ga) {
 
   var self,
       SWIPE_THRESHOLD = 50,
@@ -136,7 +134,7 @@ var Readr = (function () {
 
             // TODO: CHECK
 
-            if (options.gaTracking) _gaq.push(['_trackPageview', href]);
+            if (options.gaTracking) ga.push(['_trackPageview', href]);
 
             /**
              * If the request returned a page that contains a new loadMore button,
@@ -366,6 +364,6 @@ var Readr = (function () {
 
   };
 
-}());
+}(_gaq));
 
 Readr.init();

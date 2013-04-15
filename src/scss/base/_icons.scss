@@ -1,9 +1,7 @@
-// Not working in Firefox
-
-.icon::before,
+%icon,
 .search__submit {
   font-family: Entypo;
-  @include font-size(32px, 12px);
+  @include font-size(16px, 20px);
   font-style: normal;
   font-weight: normal;
   vertical-align: text-top;
@@ -11,11 +9,62 @@
   speak: none;
 }
 
-.icon-like::before { content: "6"; }
-.icon-reblog::before { content: "h"; }
-.icon-perma::before { content: ">"; }
-.icon-rss::before { content: "S"; }
-.icon-random::before { content: "f"; }
-.icon-share::before { content: "/"; }
-.icon-archive::before { content: "t"; }
-.icon-ask::before { content: "a"; }
+$icons: "reblog" "x",
+        "perma" "y",
+        "rss" "z",
+        "random" "a",
+        "share" "1",
+        "archive" "b",
+        "ask" "2",
+        "tweet" "f",
+        "facebook" "g",
+        "vimeo" "d",
+        "instagram" "q",
+        "lastfm" "o",
+        "flickr" "e",
+        "dribbble" "m",
+        "youtube" "9"
+        "search" ".",
+        "github" "c",
+        "spotify" "h";
+
+// g+ i
+// pinterest j
+// linkedin l
+// stumbleupon n
+// rdio p
+// skype r
+// soundcloud s
+// picasa t
+// behance u
+// zoom v
+// pinch w
+// message 3
+// ellipsis 5
+// gallery 6
+// text 7
+// note 8
+// video 9
+// heart 0
+// heart_empty +
+// conversation "
+// ask *
+// bang ç
+// world %
+// quote &
+// left /
+// right (
+// box )
+// keyboard =
+// tag ?
+// home ,
+// look -
+// info <
+// danger >
+
+@each $icon in $icons {
+  .icon--#{nth($icon, 1)}::before {
+    @extend %icon;
+    content: nth($icon, 2);
+  }
+}

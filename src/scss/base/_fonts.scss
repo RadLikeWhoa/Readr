@@ -49,20 +49,16 @@
 }
 
 /**
- * Entypo is used as an icon font. A character map is available at the
- * following URL:
- * http://entypo.com/characters.php
+ * Entypo is used as an icon font.
  */
 
 @font-face {
   font-family: 'Entypo';
-  font-style: normal;
+  src: url('http://static.tumblr.com/olr4cud/M2Mmlb2hc/entypo.eot');
+  src: url('http://static.tumblr.com/olr4cud/M2Mmlb2hc/entypo.eot?#iefix') format('embedded-opentype'),
+       url('http://static.tumblr.com/olr4cud/YFymlb2jl/entypo.woff') format('woff'),
+       url('http://static.tumblr.com/olr4cud/HUqmlb2j2/entypo.ttf') format('truetype'),
+       url('http://static.tumblr.com/olr4cud/dDJmlb2i1/entypo.svg#entypo') format('svg');
   font-weight: normal;
-  src: url('http://static.tumblr.com/olr4cud/Ankmberun/entypo-webfont.eot');
-  src: local('Entypo'),
-       local('EntypoRegular'),
-       url('http://static.tumblr.com/olr4cud/Ankmberun/entypo-webfont.eot?#iefix') format('embedded-opentype'),
-       url('http://static.tumblr.com/olr4cud/4FXmberwf/entypo-webfont.woff') format('woff'),
-       url('http://static.tumblr.com/olr4cud/MvMmbervu/entypo-webfont.ttf') format('truetype'),
-       url('http://static.tumblr.com/olr4cud/d9pmberv2/entypo-webfont.svg#EntypoRegular') format('svg');
+  font-style: normal;
 }

@@ -7,11 +7,9 @@
 
 .search__submit {
   position: absolute;
-  top: 0.65em;
-  right: 0.75em;
-  padding-right: 0;
-  padding-bottom: 0.35em;
-  padding-left: 0;
+  top: 1.4em;
+  right: 1.45em;
+  padding: 0;
   line-height: 0.65;
   background: 0;
   border: 0;
@@ -24,6 +22,7 @@
   width: 100%;
   padding: 1.5em;
   margin: 0;
+  font-size: inherit;
   border: 1px solid #fff;
   outline: none;
   @include transition(border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out);

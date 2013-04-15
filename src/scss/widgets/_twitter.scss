@@ -1,6 +1,11 @@
 .twitter {
   padding-bottom: 1.5em;
 
+  .widget-heading span {
+    vertical-align: -0.5px;
+    margin-right: 0.3em;
+  }
+
   @include break(small) {
     padding-bottom: 3em;
   }

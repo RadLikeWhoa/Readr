@@ -83,6 +83,7 @@
     float: left;
     border-bottom: 0;
     border-right: 1px solid #eee;
+    border-top: 1px solid transparent;
 
     &:first-child {
       border-radius: $rounding 0 0 $rounding;
