@@ -1,13 +1,30 @@
 .twitter {
   padding-bottom: 1.5em;
 
-  .widget-heading span {
-    vertical-align: -0.5px;
-    margin-right: 0.3em;
+  .widget-heading {
+    @extend %clearfix;
+
+    span {
+      margin-right: 0.3em;
+    }
+
+    @include break(small) {
+      a {
+        float: left;
+      }
+    }
   }
 
   @include break(small) {
     padding-bottom: 3em;
+  }
+}
+
+.twitter__handle {
+  display: block;
+
+  @include break(small) {
+    float: right;
   }
 }
 

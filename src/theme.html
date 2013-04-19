@@ -6,12 +6,10 @@
   by Sacha Schmid
 
   For questions and comments, please visit
-  [the official blog](http://readrtheme.tumblr.com)
-  or read
-  [the docs](http://readrtheme.tumblr.com/docs)
+  [the official blog](http://readrtheme.tumblr.com).
 
   For further questions or feature request send me a tweet at
-  http://twitter.com/sachaschmid
+  https://twitter.com/sachaschmid
 
   ===============================================================
 
@@ -33,44 +31,85 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <meta name="image:Page Background" content="">
-    <meta name="image:Header" content="">
-    <meta name="if:Always Show Post Actions" content="1">
-    <meta name="if:Animate Page Scrolling" content="1">
+    <meta name="color:Background" content="#fffaf0">
+    <meta name="color:Links" content="#dc0000">
+    <meta name="color:Links Hovered" content="#fd0000">
+    <meta name="color:Quote Background" content="#f8ecc9">
+    <meta name="color:Quote Text" content="#7d0808">
+    <meta name="color:Text" content="#333">
+    <meta name="font:Text" content="Source Sans Pro, sans-serif">
+    <meta name="font:Quotes" content="Droid Serif, serif">
     <meta name="if:Enable Pagination" content="0">
     <meta name="if:Enable Twitter Widget" content="1">
     <meta name="if:Full Page Background" content="1">
+    <meta name="if:Hidden Post Actions" content="0">
     <meta name="if:Highlight Intro Paragraphs" content="0">
+    <meta name="if:Include Your Twitter Handle In Tweets" content="0">
     <meta name="if:Keyboard Navigation" content="1">
     <meta name="if:Relative Date Format" content="1">
-    <meta name="if:Show Ask Link in Navigation" content="1">
     <meta name="if:Show Archive Link in Navigation" content="1">
+    <meta name="if:Show Ask Link in Navigation" content="1">
     <meta name="if:Show Description in Footer" content="0">
+    <meta name="if:Show Followings" content="1">
+    <meta name="if:Show Home Link in Navigation" content="0">
     <meta name="if:Show Note Count" content="1">
     <meta name="if:Show Notes" content="1">
     <meta name="if:Show Post Actions" content="1">
     <meta name="if:Show Random Post Link in Navigation" content="0">
-    <meta name="if:Show Reblog Info" content="1">
+    <meta name="if:Show Reblog Info on Home Page" content="1">
     <meta name="if:Show RSS Link in Navigation" content="1">
+    <meta name="if:Show Search" content="1">
     <meta name="if:Show Tags" content="0">
     <meta name="if:Show Word Count" content="1">
-    <meta name="if:Show Followings" content="1">
-    <meta name="if:Show Search" content="1">
-    <meta name="text:Google Analytics Tracking Code" content="">
-    <meta name="text:Instagram Username" content="">
-    <meta name="text:Facebook Username" content="">
-    <meta name="text:Github Username" content="">
-    <meta name="text:Dribbble Username" content="">
-    <meta name="text:Spotify Username" content="">
-    <meta name="text:lastfm Username" content="">
-    <meta name="text:Flickr Username" content="">
-    <meta name="text:YouTube Username" content="">
-    <meta name="text:Vimeo Username" content="">
+    <meta name="if:Smooth Scrolling Keyboard Navigation" content="1">
+    <meta name="image:Page Background" content="">
+    <meta name="image:Header" content="">
     <meta name="text:Disqus Shortname" content="">
+    <meta name="text:Dribbble Username" content="">
+    <meta name="text:Facebook Username" content="">
+    <meta name="text:Flickr Username" content="">
+    <meta name="text:Github Username" content="">
+    <meta name="text:Google Analytics Tracking Code" content="">
+    <meta name="text:Google Plus ID" content="">
+    <meta name="text:Instagram Username" content="">
+    <meta name="text:lastfm Username" content="">
+    <meta name="text:Pinterest Username" content="">
+    <meta name="text:Rdio Username" content="">
+    <meta name="text:Soundcloud Username" content="">
+    <meta name="text:Spotify Username" content="">
+    <meta name="text:Vimeo Username" content="">
+    <meta name="text:YouTube Username" content="">
     <style>
       @@stylesheet
     </style>
     <style>
+      html {
+        background-color: {color:Background};
+      }
+
+      body {
+        font-family: {font:Text};
+        color: {color:Text};
+      }
+
+      a {
+        color: {color:Links};
+      }
+
+      a:hover,
+      a:focus {
+        color: {color:Links Hovered};
+      }
+
+      .quote blockquote {
+        color: {color:Quote Text};
+        background-color: {color:Quote Background};
+      }
+
+      .quote blockquote p {
+        font-family: {font:Quotes};
+      }
+
       {block:IfPageBackgroundImage}
         body {
           background-image: url({image:Page Background});
@@ -108,6 +147,9 @@
           {/block:IfNotHeaderImage}
         </h1>
         <div class="site-icons">
+          {block:IfShowHomeLinkInNavigation}
+            <a href="/" class="site-link button"><span aria-hidden="true" class="icon--home"></span></a>
+          {/block:IfShowHomeLinkInNavigation}
           {block:IfShowRssLinkInNavigation}
             <a href="/rss" class="site-link button"><span aria-hidden="true" class="icon--rss"></span></a>
           {/block:IfShowRssLinkInNavigation}
@@ -131,7 +173,7 @@
       </div>
     </header>
     <section class="main-content">
-      <section class="posts{block:IfNotAlwaysShowPostActions} swipe-actions{/block:IfNotAlwaysShowPostActions}" id="posts">
+      <section class="posts{block:IfShowPostActions}{block:IfHiddenPostActions} swipe-actions{/block:IfHiddenPostActions}{/block:IfShowPostActions}" id="posts">
         {block:Posts}
           <article class="{PostType}">
             <div class="post card">
@@ -253,12 +295,12 @@
               {/block:Answer}
               {block:RebloggedFrom}
                 {block:IndexPage}
-                  {block:IfShowReblogInfo}
+                  {block:IfShowReblogInfoOnHomePage}
                     <p class="reblogged">{lang:Reblogged from ReblogParentTitle 2}</p>
-                  {/block:IfShowReblogInfo}
-                  {block:IfNotShowReblogInfo}
+                  {/block:IfShowReblogInfoOnHomePage}
+                  {block:IfNotShowReblogInfoOnHomePage}
                     <!--{lang:Reblogged from ReblogParentTitle 2}-->
-                  {/block:IfNotShowReblogInfo}
+                  {/block:IfNotShowReblogInfoOnHomePage}
                 {/block:IndexPage}
                 {block:PermalinkPage}
                   <p class="reblogged">{lang:Reblogged from ReblogParentTitle 2}</p>
@@ -266,13 +308,13 @@
               {/block:RebloggedFrom}
             </div>
             {block:IfShowPostActions}
-              <div class="post-meta{block:IfAlwaysShowPostActions} horizontal{/block:IfAlwaysShowPostActions}">
+              <div class="post-meta{block:IfNotHiddenPostActions} horizontal{/block:IfNotHiddenPostActions}">
                 <ul class="post-meta__list">
                   {block:IndexPage}
                     <li class="post-meta__item button"><a href="{Permalink}"><span aria-hidden="true" class="icon--perma"></span></a></li>
                   {/block:IndexPage}
                   <li class="post-meta__item button"><a href="{ReblogURL}"><span aria-hidden="true" class="icon--reblog"></span></a></li>
-                  <li class="post-meta__item button"><a href="https://twitter.com/intent/tweet?url={URLEncodedPermalink}"><span aria-hidden="true" class="icon--tweet"></span></a></li>
+                  <li class="post-meta__item button"><a href="https://twitter.com/intent/tweet?url={URLEncodedPermalink}{block:Title}&text={URLEncodedTitle}{/block:Title}{block:Twitter}{block:IfIncludeYourTwitterHandleInTweets}&via={TwitterUsername}{/block:IfIncludeYourTwitterHandleInTweets}&related={TwitterUsername}{/block:Twitter}"><span aria-hidden="true" class="icon--tweet"></span></a></li>
                 </ul>
               </div>
             {/block:IfShowPostActions}
@@ -373,8 +415,8 @@
       {block:IfShowSearch}
         <section id="search" class="search card">
           <form action="/search" method="get">
-            <input type="text" class="search__field" name="q" placeholder="{lang:Search}..." value="{SearchQuery}" />
-            <input type="submit" value="." class="search__submit" />
+            <input class="search__field" name="q" placeholder="{lang:Search}..." value="{SearchQuery}" required>
+            <input type="submit" value="F" class="search__submit">
           </form>
         </section>
       {/block:IfShowSearch}
@@ -390,101 +432,13 @@
         {block:IfEnableTwitterWidget}
           <section id="twitter" class="twitter card" style="display:none;">
             <ul id="tweets" class="tweets"></ul>
-            <h3 class="widget-heading"><a href="http://twitter.com/intent/user?screen_name={TwitterUsername}" {Target}><span aria-hidden="true" class="icon--tweet"></span>Twitter</a></h3>
+            <h3 class="widget-heading">
+              <a href="https://twitter.com/intent/user?screen_name={TwitterUsername}" {Target}>
+                <span aria-hidden="true" class="icon--tweet"></span>Twitter
+              </a>
+              <div id="twitterHandle" class="twitter__handle"></div>
+            </h3>
           </section>
-          <script>
-            function escapeHTML (str) {
-              var div = document.createElement('div');
-              div.appendChild(document.createTextNode(str));
-              return div.innerHTML;
-            }
-
-            function parseTweet (tweet) {
-              if (!(tweet.entities)) return escapeHTML(tweet.text);
-
-              var index_map = {};
-
-              for (var i = 0, j = tweet.entities.urls.length; i < j; i++) {
-                var entry = tweet.entities.urls[i];
-                index_map[entry.indices[0]] = [entry.indices[1], function (text) {
-                  return '<a href="' + escapeHTML(entry.url) + '" {Target}>' + escapeHTML(text) + '</a>';
-                }]
-              }
-
-              for (var k = 0, l = tweet.entities.hashtags.length; k < l; k++) {
-                var entry = tweet.entities.hashtags[k];
-                index_map[entry.indices[0]] = [entry.indices[1], function (text) {
-                  return '<a href="http://twitter.com/search?q=' + escape('#' + entry.text) + '" {Target}>' + escapeHTML(text) + '</a>';
-                }]
-              }
-
-              for (var m = 0, n = tweet.entities.user_mentions.length; m < n; m++) {
-                var entry = tweet.entities.user_mentions[m];
-                index_map[entry.indices[0]] = [entry.indices[1], function (text) {
-                  return '<a href="http://twitter.com/' + escapeHTML(entry.screen_name) + '" title="' + escapeHTML(entry.name) + '" {Target}>' + escapeHTML(text) + '</a>';
-                }]
-              }
-
-              var result = "",
-                  last_o = 0,
-                  o;
-
-              for (o = 0, p = tweet.text.length; o < p; ++o) {
-                var ind = index_map[o];
-                if (!ind) continue;
-
-                var end = ind[0],
-                    func = ind[1];
-
-                if (o > last_o) result += escapeHTML(tweet.text.substring(last_o, o));
-                result += func(tweet.text.substring(o, end));
-                o = end - 1;
-                last_o = end;
-              }
-
-              if (o > last_o) result += escapeHTML(tweet.text.substring(last_o, o));
-
-              return result;
-            }
-
-            function getTimestamp (time_value) {
-              var values = time_value.split(" ");
-
-              time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
-
-              var parsed_date = Date.parse(time_value),
-                  relative_to = (arguments.length > 1) ? arguments[1] : new Date(),
-                  delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
-
-              delta = delta + (relative_to.getTimezoneOffset() * 60);
-
-              if (delta < 120) {
-                return 'a minute ago';
-              } else if (delta < 45 * 60) {
-                return (parseInt(delta / 60)).toString() + ' minutes ago';
-              } else if (delta < 90 * 60) {
-                return 'an hour ago';
-              } else if (delta < 24 * 60 * 60) {
-                return '' + (parseInt(delta / 3600)).toString() + ' hours ago';
-              } else if (delta < 48 * 60 * 60) {
-                return '1 day ago';
-              } else {
-                return (parseInt(delta / 86400)).toString() + ' days ago';
-              }
-            }
-
-            function recent_tweets (data) {
-              var string = '';
-
-              for (var i = 0; i < 3; i++) {
-                string += '<li class="tweet">' + parseTweet(data[i]) + '<div><a href="https://twitter.com/' + data[i].user.screen_name + '/status/' + data[i].id_str + '" class="small tweet__timestamp">' + getTimestamp(data[i].created_at) + '</a></div></li>';
-              }
-
-              document.getElementById('tweets').innerHTML = string;
-              document.getElementById('twitter').style.display = 'block';
-            }
-          </script>
-          <script src="/tweets.js"></script>
         {/block:IfEnableTwitterWidget}
       {/block:Twitter}
       {block:IfShowFollowings}
@@ -505,34 +459,116 @@
       {/block:IfShowFollowings}
       <ul class="social">
         {block:Twitter}
-          <li class="social__link--twitter"><a href="http://twitter.com/intent/user?screen_name={TwitterUsername}" {Target}><span aria-hidden="true" class="icon--tweet"></span>Twitter</a></li>
+          <li class="social__link--twitter">
+            <a href="https://twitter.com/intent/user?screen_name={TwitterUsername}" {Target}>
+              <span aria-hidden="true" class="icon--tweet"></span>
+              <span class="text">Twitter</span>
+            </a>
+          </li>
         {/block:Twitter}
         {block:IfInstagramUsername}
-          <li class="social__link--instagram"><a href="http://instagram.com/{text:Instagram Username}" {Target}><span aria-hidden="true" class="icon--instagram"></span>Instagram</a></li>
+          <li class="social__link--instagram">
+            <a href="http://instagram.com/{text:Instagram Username}" {Target}>
+              <span aria-hidden="true" class="icon--instagram"></span>
+              <span class="text">Instagram</span>
+            </a>
+          </li>
         {/block:IfInstagramUsername}
         {block:IfFacebookUsername}
-          <li class="social__link--facebook"><a href="http://facebook.com/{text:Facebook Username}" {Target}><span aria-hidden="true" class="icon--facebook"></span>Facebook</a></li>
+          <li class="social__link--facebook">
+            <a href="http://facebook.com/{text:Facebook Username}" {Target}>
+              <span aria-hidden="true" class="icon--facebook"></span>
+              <span class="text">Facebook</span>
+            </a>
+          </li>
         {/block:IfFacebookUsername}
+        {block:IfPinterestUsername}
+          <li class="social__link--pinterest">
+            <a href="http://pinterest.com/{text:Pinterest Username}" {Target}>
+              <span aria-hidden="true" class="icon--pinterest"></span>
+              <span class="text">Pinterest</span>
+            </a>
+          </li>
+        {/block:IfPinterestUsername}
         {block:IfGithubUsername}
-          <li class="social__link--github"><a href="http://github.com/{text:Github Username}" {Target}><span aria-hidden="true" class="icon--github"></span>Github</a></li>
+          <li class="social__link--github">
+            <a href="http://github.com/{text:Github Username}" {Target}>
+              <span aria-hidden="true" class="icon--github"></span>
+              <span class="text">GitHub</span>
+            </a>
+          </li>
         {/block:IfGithubUsername}
         {block:IfDribbbleUsername}
-          <li class="social__link--dribbble"><a href="http://dribbble.com/{text:Dribbble Username}" {Target}><span aria-hidden="true" class="icon--dribbble"></span>Dribbble</a></li>
+          <li class="social__link--dribbble">
+            <a href="http://dribbble.com/{text:Dribbble Username}" {Target}>
+              <span aria-hidden="true" class="icon--dribbble"></span>
+              <span class="text">Dribbble</span>
+            </a>
+          </li>
         {/block:IfDribbbleUsername}
         {block:IfSpotifyUsername}
-          <li class="social__link--spotify"><a href="http://open.spotify.com/user/{text:Spotify Username}" {Target}><span aria-hidden="true" class="icon--spotify"></span>Last.fm</a></li>
+          <li class="social__link--spotify">
+            <a href="http://open.spotify.com/user/{text:Spotify Username}" {Target}>
+              <span aria-hidden="true" class="icon--spotify"></span>
+              <span class="text">Spotify</span>
+            </a>
+          </li>
         {/block:IfSpotifyUsername}
+        {block:IfRdioUsername}
+          <li class="social__link--rdio">
+            <a href="http://rd.io/people/{text:Rdio Username}" {Target}>
+              <span aria-hidden="true" class="icon--rdio"></span>
+              <span class="text">Rdio</span>
+            </a>
+          </li>
+        {/block:IfRdioUsername}
+        {block:IfSoundcloudUsername}
+          <li class="social__link--soundcloud">
+            <a href="https://soundcloud.com/{text:Soundcloud Username}" {Target}>
+              <span aria-hidden="true" class="icon--soundcloud"></span>
+              <span class="text">Soundcloud</span>
+            </a>
+          </li>
+        {/block:IfSoundcloudUsername}
         {block:IfLastfmUsername}
-          <li class="social__link--lastfm"><a href="http://lastfm.com/users/{text:Lastfm Username}" {Target}><span aria-hidden="true" class="icon--lastfm"></span>Last.fm</a></li>
+          <li class="social__link--lastfm">
+            <a href="http://lastfm.com/users/{text:Lastfm Username}" {Target}>
+              <span aria-hidden="true" class="icon--lastfm"></span>
+              <span class="text">Last.fm</span>
+            </a>
+          </li>
         {/block:IfLastfmUsername}
+        {block:IfGooglePlusId}
+          <li class="social__link--gplus">
+            <a href="https://plus.google.com/{text:Google Plus ID}" {Target}>
+              <span aria-hidden="true" class="icon--gplus"></span>
+              <span class="text">Google+</span>
+            </a>
+          </li>
+        {/block:IfGooglePlusId}
         {block:IfYouTubeUsername}
-          <li class="social__link--youtube"><a href="http://youtube.com/{text:YouTube Username}" {Target}><span aria-hidden="true" class="icon--youtube"></span>YouTube</a></li>
+          <li class="social__link--youtube">
+            <a href="http://youtube.com/{text:YouTube Username}" {Target}>
+              <span aria-hidden="true" class="icon--youtube"></span>
+              <span class="text">YouTube</span>
+            </a>
+          </li>
         {/block:IfYouTubeUsername}
         {block:IfFlickrUsername}
-          <li class="social__link--flickr"><a href="http://flickr.com/photos/{text:Flickr Username}" {Target}><span aria-hidden="true" class="icon--flickr"></span>Flickr</a></li>
+          <li class="social__link--flickr">
+            <a href="http://flickr.com/photos/{text:Flickr Username}" {Target}>
+              <span aria-hidden="true" class="icon--flickr"></span>
+              <span class="text">Flickr</span>
+            </a>
+          </li>
         {/block:IfFlickrUsername}
         {block:IfVimeoUsername}
-          <li class="social__link--vimeo"><a href="http://vimeo.com/{text:Vimeo Username}" {Target}><span aria-hidden="true" class="icon--vimeo"></span>Vimeo</a></li>
+          <li class="social__link--vimeo">
+            <a href="http://vimeo.com/{text:Vimeo Username}" {Target}>
+              <span aria-hidden="true" class="icon--vimeo"></span>
+              <span class="text">Vimeo</span>
+            </a>
+          </li>
         {/block:IfVimeoUsername}
       </ul>
     </aside>
@@ -542,7 +578,6 @@
       </div>
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="//platform.twitter.com/widgets.js"></script>
     <script>
       /**
        * Load localised strings and theme options in here so they can be used
@@ -574,13 +609,31 @@
         {block:IfGoogleAnalyticsTrackingCode}
           gaTracking: true,
         {/block:IfGoogleAnalyticsTrackingCode}
-        {block:IfAnimatePageScrolling}
-          animatePageScrolling: true
-        {/block:IfAnimatePageScrolling}
+        {block:IfSmoothScrollingKeyboardNavigation}
+          smoothScrollingKeyboardNavigation: true
+        {/block:IfSmoothScrollingKeyboardNavigation}
       }
     </script>
     <script>
       @@script
     </script>
+    {block:Twitter}
+      {block:IfEnableTwitterWidget}
+        <script>
+          function recent_tweets (data) {
+            var string = '';
+
+            for (var i = 0; i < 3; i++) {
+              string += '<li class="tweet">' + Readr.Twitter.parseTweet(data[i]) + '<div><a href="https://twitter.com/' + data[i].user.screen_name + '/status/' + data[i].id_str + '" class="small tweet__timestamp">' + Readr.Twitter.getTimestamp(data[i].created_at) + '</a></div></li>';
+            }
+
+            document.getElementById('tweets').innerHTML = string;
+            document.getElementById('twitterHandle').innerHTML = '@{TwitterUsername}';
+            document.getElementById('twitter').style.display = 'block';
+          }
+        </script>
+        <script src="/tweets.js"></script>
+      {/block:IfEnableTwitterWidget}
+    {/block:Twitter}
   </body>
 </html>

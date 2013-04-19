@@ -9,8 +9,8 @@
  */
 
 html {
-  font: 87.5%/1.5 Source Sans Pro, sans-serif;
-  background-color: #fffaf0;
+  font-size: 87.5%;
+  line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
@@ -22,7 +22,6 @@ html {
 }
 
 body {
-  color: #333;
   margin: 0 auto 3em;
   overflow-x: hidden;
 }

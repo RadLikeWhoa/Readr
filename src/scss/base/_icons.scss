@@ -1,4 +1,4 @@
-%icon,
+[class*="icon--"],
 .search__submit {
   font-family: Entypo;
   @include font-size(16px, 20px);
@@ -9,62 +9,91 @@
   speak: none;
 }
 
-$icons: "reblog" "x",
-        "perma" "y",
-        "rss" "z",
-        "random" "a",
-        "share" "1",
-        "archive" "b",
-        "ask" "2",
-        "tweet" "f",
-        "facebook" "g",
-        "vimeo" "d",
-        "instagram" "q",
-        "lastfm" "o",
-        "flickr" "e",
-        "dribbble" "m",
-        "youtube" "9"
-        "search" ".",
-        "github" "c",
-        "spotify" "h";
-
-// g+ i
-// pinterest j
-// linkedin l
-// stumbleupon n
-// rdio p
-// skype r
-// soundcloud s
-// picasa t
-// behance u
-// zoom v
-// pinch w
-// message 3
-// ellipsis 5
-// gallery 6
-// text 7
-// note 8
-// video 9
-// heart 0
-// heart_empty +
-// conversation "
-// ask *
-// bang ç
-// world %
-// quote &
-// left /
-// right (
-// box )
-// keyboard =
-// tag ?
-// home ,
-// look -
-// info <
-// danger >
+$icons:
+  "reblog" "q",
+  "perma" "m",
+  "rss" "v",
+  "random" "s",
+  "share" "n",
+  "archive" "5",
+  "ask" "é",
+  "tweet" "a",
+  "facebook" "J",
+  "vimeo" "I",
+  "instagram" "O",
+  "lastfm" "M",
+  "flickr" "H",
+  "dribbble" "L",
+  "youtube" "3"
+  "search" "F",
+  "github" "G",
+  "spotify" "N",
+  "gplus" "c",
+  "pintereset" "K",
+  "rdio" "b",
+  "soundcloud" "r",
+  "home" "l",
+  "detail" "d",
+  "message" "e",
+  "reply" "f",
+  "star" "g",
+  "thumbup" "h",
+  "conversation" "i",
+  "speak" "j",
+  "quote" "k",
+  "bang" "o",
+  "ellipsis" "p",
+  "tag" "t",
+  "photo" "u",
+  "note" "w",
+  "tiles" "x",
+  "up" "y",
+  "lines" "z",
+  "text" "1",
+  "gallery" "2",
+  "music" "4",
+  "bookmarks" "6",
+  "play" "7",
+  "pause" "8",
+  "stop" "9",
+  "forward" "0",
+  "rewind" "+",
+  "skip-back" "\"",
+  "skip-next" "*",
+  "zoom" "ç",
+  "pinch" "%",
+  "volume" "&",
+  "sound" "/",
+  "mute" "(",
+  "left" ")",
+  "down" "=",
+  "right" "'",
+  "phone" "^",
+  "time" "?",
+  "calendar" "`",
+  "user" "<",
+  "id" ">",
+  "location" ",",
+  "window" ":",
+  "desktop" "-",
+  "infinity" ";",
+  "clipboard" ":",
+  "box" "_",
+  "tick" "ä",
+  "cross" "ö",
+  "close" "ü",
+  "info" "à",
+  "danger" "è",
+  "repeat" "$",
+  "cog" "£",
+  "world" "A",
+  "keyboard" "B",
+  "heart" "C",
+  "heart-empty" "D",
+  "star-empty" "E";
 
 @each $icon in $icons {
   .icon--#{nth($icon, 1)}::before {
-    @extend %icon;
     content: nth($icon, 2);
   }
 }

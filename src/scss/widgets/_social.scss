@@ -6,16 +6,16 @@
   margin-left: -1.5em;
 }
 
-.social__link {
+[class*="social__link"] {
   float: left;
-  width: 50%;
+  width: 33.333%;
   padding-left: 1.5em;
   margin-bottom: 1.5em;
   font-weight: bold;
   @include transition(transform 0.15s ease-in-out);
 
   &:hover {
-    @include transform(rotate(2deg));
+    @include transform(rotate(1.5deg));
   }
 
   a {
@@ -23,35 +23,59 @@
     @extend %shadowed;
 
     display: block;
+    max-width: 100%;
     padding: 1.5em;
     color: #fff;
+    border-bottom: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    @include break(small) {
+      text-align: left;
+    }
   }
 
-  span {
-    margin-right: 0.5em;
-    vertical-align: -0.5px;
+  .text {
+    display: none;
+
+    @include break(small) {
+      display: inline;
+    }
   }
 
   @include break(small) {
+    width: 50%;
+
+    [class*="icon--"] {
+      margin-right: 0.5em;
+      vertical-align: -0.5px;
+    }
+  }
+
+  @include break(medium) {
     width: 33.333%;
   }
 }
 
-$networks: "twitter" "#00a0d1",
-           "facebook" "#3b5998",
-           "instagram" "#634d40",
-           "github" "#4183c4",
-           "dribbble" "#ea4c89",
-           "spotify" "#a2cd3d",
-           "lastfm" "#c3000d",
-           "youtube" "#c4302b",
-           "vimeo" "#86c9ef",
-           "flickr" "#0063dc";
-
+$networks:
+  "twitter" "#00a0d1",
+  "facebook" "#3b5998",
+  "instagram" "#634d40",
+  "github" "#4183c4",
+  "dribbble" "#ea4c89",
+  "spotify" "#81b71a",
+  "lastfm" "#c3000d",
+  "youtube" "#c4302b",
+  "vimeo" "#86c9ef",
+  "flickr" "#0063dc",
+  "gplus" "#db4a39",
+  "pinterest" "#c8232c",
+  "rdio" "#008fd5",
+  "soundcloud" "#ff7700";
 
 @each $network in $networks {
   .social__link--#{nth($network, 1)} {
-    @extend .social__link;
     a { background-color: #{nth($network, 2)}; }
   }
 }
