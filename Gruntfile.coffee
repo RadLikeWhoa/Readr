@@ -23,7 +23,7 @@ module.exports = (grunt) ->
     jshint:
       options:
         jshintrc: '<%= readr.src %>/js/.jshintrc'
-      beforeconcat: '<%= readr.src %>/js/{,*/}.js'
+      beforeconcat: '<%= readr.src %>/js/**/*.js'
       afterconcat: '<%= readr.dist %>/js/main.js'
 
     concat:
@@ -31,7 +31,7 @@ module.exports = (grunt) ->
         separator: ';'
       dist:
         files:
-          '<%= readr.dist %>/js/main.js': '<%= readr.src %>/js/{,*/}*.js'
+          '<%= readr.dist %>/js/main.js': [ '<%= readr.src %>/js/Readr.js', '<%= readr.src %>/js/modules/*.js', '<%= readr.src %>/js/main.js' ]
 
     uglify:
       dist:
