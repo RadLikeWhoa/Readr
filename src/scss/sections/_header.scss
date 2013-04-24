@@ -22,6 +22,7 @@
 }
 
 .blog-heading {
+  margin-top: 0;
   margin-bottom: 0;
   text-align: center;
   font-weight: 400;
@@ -50,9 +51,51 @@ a.site-link {
   min-width: 3em;
   margin-top: 1.5em;
   margin-left: 1em;
+  margin-bottom: 1em;
   text-align: center;
 
   &:first-child {
     margin-left: 0;
+  }
+}
+
+.keyboard-nav-note {
+  position: absolute;
+  z-index: 1;
+  top: 0.25em;
+  left: 0.55em;
+
+  span {
+    color: rgba(0, 0, 0, 0.38);
+    cursor: help;
+    @include transition(color 0.25s ease-in-out);
+
+    &:hover {
+      color: #333;
+
+      & + .keyboard-nav-text {
+        opacity: 1;
+        @include transform(translateY(0));
+      }
+    }
+  }
+}
+
+.keyboard-nav-text {
+  @extend %rounded;
+  @extend %shadowed;
+  @extend .card;
+
+  max-width: 13em;
+  padding: 0.75em;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  @include transform(translateY(0.25em));
+  @include transition(all 0.25s ease-in-out);
+
+  .key {
+    display: inline-block;
+    width: 1em;
   }
 }

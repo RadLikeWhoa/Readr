@@ -26,10 +26,13 @@
     max-width: 100%;
     padding: 1.5em;
     color: #fff;
-    border-bottom: 0;
     text-align: center;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    &:hover {
+      color: #fff;
+    }
 
     @include break(small) {
       text-align: left;

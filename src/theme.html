@@ -136,6 +136,16 @@
     </style>
   </head>
   <body class="{block:IndexPage}page--index{/block:IndexPage}{block:PermalinkPage}page--permalink{/block:PermalinkPage}">
+    {block:IfKeyboardNavigation}
+      <div class="keyboard-nav-note">
+        <span aria-hidden="true" class="icon--keyboard"></span>
+        <div class="keyboard-nav-text small">
+          <strong>Keyboard shortcuts</strong><br>
+          <b class="key">j</b> next post<br>
+          <b class="key">k</b> previous post
+        </div>
+      </div>
+    {/block:IfKeyboardNavigation}
     <header class="site-header">
       <div class="site-header__wrap">
         <h1 class="h2 blog-heading">
@@ -314,7 +324,7 @@
                     <li class="post-meta__item button"><a href="{Permalink}"><span aria-hidden="true" class="icon--perma"></span></a></li>
                   {/block:IndexPage}
                   <li class="post-meta__item button"><a href="{ReblogURL}"><span aria-hidden="true" class="icon--reblog"></span></a></li>
-                  <li class="post-meta__item button"><a href="https://twitter.com/intent/tweet?url={URLEncodedPermalink}{block:Title}&text={URLEncodedTitle}{/block:Title}{block:Twitter}{block:IfIncludeYourTwitterHandleInTweets}&via={TwitterUsername}{/block:IfIncludeYourTwitterHandleInTweets}&related={TwitterUsername}{/block:Twitter}"><span aria-hidden="true" class="icon--tweet"></span></a></li>
+                  <li class="post-meta__item button"><a class="tweet-action" href="https://twitter.com/intent/tweet?url={URLEncodedPermalink}{block:Title}&text={URLEncodedTitle}{/block:Title}{block:Twitter}{block:IfIncludeYourTwitterHandleInTweets}&via={URLEncodedTwitterUsername}{/block:IfIncludeYourTwitterHandleInTweets}&related={URLEncodedTwitterUsername}{/block:Twitter}"><span aria-hidden="true" class="icon--tweet"></span></a></li>
                 </ul>
               </div>
             {/block:IfShowPostActions}
