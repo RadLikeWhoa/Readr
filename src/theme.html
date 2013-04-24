@@ -589,6 +589,26 @@
       </div>
     </footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    {block:Twitter}
+      <script>
+        window.twttr = (function (d,s,id) {
+          var t, js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+          js.src='https://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs);
+          return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+        }(document, 'script', 'twitter-wjs'));
+      </script>
+    {/block:Twitter}
+    {block:IfGoogleAnalyticsTrackingCode}
+      <script>
+        _gaq = [['_setAccount', variables.gaTrackingCode], ['_trackPageview']];
+        (function (d,t) {
+          var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          g.src = ('https:' === location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+          s.parentNode.insertBefore(g, s);
+        }(document, 'script'));
+      </script>
+    {/block:IfGoogleAnalyticsTrackingCode}
     <script>
       /**
        * Load localised strings and theme options in here so they can be used

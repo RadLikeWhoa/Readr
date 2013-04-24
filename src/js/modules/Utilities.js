@@ -66,6 +66,10 @@ Readr.Utilities = (function () {
       });
     }
 
+    $(window).on('resize', function () {
+      if (Page.postPositions.length) Page.notePostPositions();
+    });
+
     /**
      * If there is a next page and inline post loading is enabled, bind the
      * requesting action to the button.
@@ -76,20 +80,6 @@ Readr.Utilities = (function () {
         e.preventDefault();
         Page.loadPosts();
       });
-    }
-  }
-
-  Utilities.analytics = function () {
-    if (options.gaTracking) {
-      _gaq = [['_setAccount', variables.gaTrackingCode], ['_trackPageview']];
-
-      (function (d, t) {
-        var g = d.createElement(t),
-            s = d.getElementsByTagName(t)[0];
-
-        g.src = ('https:' === location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
-        s.parentNode.insertBefore(g, s);
-      }(document, 'script'));
     }
   }
 

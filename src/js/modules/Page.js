@@ -6,8 +6,9 @@ Readr.Page = (function () {
       KEYBOARD_NAVIGATION_PADDING = 20,
       SMOOTH_SCROLLING_SPEED = 250,
       isLoading = false,
-      loadMore = document.getElementById('jsLoadMore'),
-      postPositions = [];
+      loadMore = document.getElementById('jsLoadMore');
+
+  Page.postPositions = [];
 
   Page.scrollTo = function (point) {
     /**
@@ -71,7 +72,7 @@ Readr.Page = (function () {
            * button and the browser history.
            */
 
-          window.history.pushState(null, null, href);
+          window.history.replaceState({}, document.title, href);
 
           /**
            * As a global Google Analytics object exists, inline requests can be
@@ -97,7 +98,7 @@ Readr.Page = (function () {
         isLoading = false;
 
         setTimeout(function () {
-          if (postPositions.length) Page.notePostPositions();
+          if (Page.postPositions.length) Page.notePostPositions();
         }, 500);
       },
       error: function (request, status, error) {
@@ -123,7 +124,7 @@ Readr.Page = (function () {
     var scrollTop = $doc.scrollTop(),
         offset = 0;
 
-    if (!postPositions.length) Page.notePostPositions();
+    if (!Page.postPositions.length) Page.notePostPositions();
 
     if (direction === 'next') {
 
@@ -133,8 +134,8 @@ Readr.Page = (function () {
        * scroll to that article.
        */
 
-      for (var i = 0, j = postPositions.length; i < j; i++) {
-        offset = postPositions[i].top - KEYBOARD_NAVIGATION_PADDING;
+      for (var i = 0, j = Page.postPositions.length; i < j; i++) {
+        offset = Page.postPositions[i].top - KEYBOARD_NAVIGATION_PADDING;
 
         if (offset > scrollTop) {
           Page.scrollTo(offset);
@@ -150,11 +151,11 @@ Readr.Page = (function () {
        * the post before it.
        */
 
-      for (var k = 0, l = postPositions.length; k < l; k++) {
-        offset = postPositions[k].top - KEYBOARD_NAVIGATION_PADDING;
+      for (var k = 0, l = Page.postPositions.length; k < l; k++) {
+        offset = Page.postPositions[k].top - KEYBOARD_NAVIGATION_PADDING;
 
         if (offset >= scrollTop) {
-          Page.scrollTo(0 < k ? postPositions[k - 1].top - KEYBOARD_NAVIGATION_PADDING : 0);
+          Page.scrollTo(0 < k ? Page.postPositions[k - 1].top - KEYBOARD_NAVIGATION_PADDING : 0);
           return;
         }
       }
@@ -164,7 +165,7 @@ Readr.Page = (function () {
        * penultimate post.
        */
 
-      Page.scrollTo(postPositions[--k].top - KEYBOARD_NAVIGATION_PADDING);
+      Page.scrollTo(Page.postPositions[--k].top - KEYBOARD_NAVIGATION_PADDING);
     }
   }
 
@@ -173,7 +174,7 @@ Readr.Page = (function () {
 
     for (var i = 0, j = articles.length ; i < j; i++) {
       var current = $(articles[i]);
-      postPositions[i] = { top: current.offset().top, height: current.outerHeight() };
+      Page.postPositions[i] = { top: current.offset().top, height: current.outerHeight() };
     }
   }
 
