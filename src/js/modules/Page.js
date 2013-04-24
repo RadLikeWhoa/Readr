@@ -6,9 +6,14 @@ Readr.Page = (function () {
       KEYBOARD_NAVIGATION_PADDING = 20,
       SMOOTH_SCROLLING_SPEED = 250,
       isLoading = false,
+      lastLoaded = 0,
       loadMore = document.getElementById('jsLoadMore');
 
   Page.postPositions = [];
+
+  Page.getScrollTop = function () {
+    return window.pageYOffset || document.documentElement.scrollTop;
+  }
 
   Page.scrollTo = function (point) {
     /**
@@ -82,9 +87,9 @@ Readr.Page = (function () {
           if (options.gaTracking) _gaq.push(['_trackPageview', href]);
 
           /**
-           * If the request returned a page that contains a new loadMore button,
-           * update the button's URL to reflect the next page. If not, remove the
-           * button so users can't load an inexisting page.
+           * If the request returned a page that contains a new loadMore
+           * button, update the button's URL to reflect the next page. If not,
+           * remove the button so users can't load an inexisting page.
            */
 
           if (results.find('#jsLoadMore').length) {
@@ -96,10 +101,7 @@ Readr.Page = (function () {
         }
 
         isLoading = false;
-
-        setTimeout(function () {
-          if (Page.postPositions.length) Page.notePostPositions();
-        }, 500);
+        lastLoaded = (page - 1) * 10;
       },
       error: function (request, status, error) {
 
@@ -121,10 +123,11 @@ Readr.Page = (function () {
   }
 
   Page.pageNavigation = function (direction) {
-    var scrollTop = $doc.scrollTop(),
+    var scrollTop = Page.getScrollTop(),
+        postsCount = Page.postPositions.length,
         offset = 0;
 
-    if (!Page.postPositions.length) Page.notePostPositions();
+    Page.notePostPositions(lastLoaded);
 
     if (direction === 'next') {
 
@@ -135,11 +138,11 @@ Readr.Page = (function () {
        */
 
       for (var i = 0, j = Page.postPositions.length; i < j; i++) {
-        offset = Page.postPositions[i].top - KEYBOARD_NAVIGATION_PADDING;
+        offset = Page.postPositions[i] - KEYBOARD_NAVIGATION_PADDING;
 
         if (offset > scrollTop) {
           Page.scrollTo(offset);
-          if (i >= j - 2 && loadMore) Page.loadPosts();
+          if (i >= j - 3 && loadMore) Page.loadPosts();
           break;
         }
       }
@@ -152,10 +155,10 @@ Readr.Page = (function () {
        */
 
       for (var k = 0, l = Page.postPositions.length; k < l; k++) {
-        offset = Page.postPositions[k].top - KEYBOARD_NAVIGATION_PADDING;
+        offset = Page.postPositions[k] - KEYBOARD_NAVIGATION_PADDING;
 
         if (offset >= scrollTop) {
-          Page.scrollTo(0 < k ? Page.postPositions[k - 1].top - KEYBOARD_NAVIGATION_PADDING : 0);
+          Page.scrollTo(0 < k ? Page.postPositions[k - 1] - KEYBOARD_NAVIGATION_PADDING : 0);
           return;
         }
       }
@@ -165,16 +168,16 @@ Readr.Page = (function () {
        * penultimate post.
        */
 
-      Page.scrollTo(Page.postPositions[--k].top - KEYBOARD_NAVIGATION_PADDING);
+      Page.scrollTo(Page.postPositions[postsCount - 1] - KEYBOARD_NAVIGATION_PADDING);
     }
   }
 
-  Page.notePostPositions = function () {
+  Page.notePostPositions = function (offset) {
     var articles = document.querySelectorAll('#posts article');
 
-    for (var i = 0, j = articles.length ; i < j; i++) {
-      var current = $(articles[i]);
-      Page.postPositions[i] = { top: current.offset().top, height: current.outerHeight() };
+    for (var i = offset || 0, j = articles.length; i < j; i++) {
+      var article = articles[i];
+      Page.postPositions[i] = article.getBoundingClientRect().top + Page.getScrollTop();
     }
   }
 
