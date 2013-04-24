@@ -6,7 +6,8 @@ Readr.Page = (function () {
       KEYBOARD_NAVIGATION_PADDING = 20,
       SMOOTH_SCROLLING_SPEED = 250,
       isLoading = false,
-      loadMore = document.getElementById('jsLoadMore');
+      loadMore = document.getElementById('jsLoadMore'),
+      postPositions = [];
 
   Page.scrollTo = function (point) {
     /**
@@ -94,6 +95,10 @@ Readr.Page = (function () {
         }
 
         isLoading = false;
+
+        setTimeout(function () {
+          if (postPositions.length) Page.notePostPositions();
+        }, 500);
       },
       error: function (request, status, error) {
 
@@ -116,8 +121,9 @@ Readr.Page = (function () {
 
   Page.pageNavigation = function (direction) {
     var scrollTop = $doc.scrollTop(),
-        articles = $(document.getElementById('posts')).find('article'),
         offset = 0;
+
+    if (!postPositions.length) Page.notePostPositions();
 
     if (direction === 'next') {
 
@@ -127,20 +133,13 @@ Readr.Page = (function () {
        * scroll to that article.
        */
 
-      for (var i = 0, j = articles.length ; i < j; i++) {
-        offset = parseInt($(articles[i]).offset().top - KEYBOARD_NAVIGATION_PADDING, 10);
+      for (var i = 0, j = postPositions.length; i < j; i++) {
+        offset = postPositions[i].top - KEYBOARD_NAVIGATION_PADDING;
 
         if (offset > scrollTop) {
           Page.scrollTo(offset);
-
-          /**
-           * If a visitor navigates to the penultimate post, load more posts
-           * and scroll down.
-           */
-
           if (i >= j - 2 && loadMore) Page.loadPosts();
-
-          return;
+          break;
         }
       }
     } else if (direction === 'prev') {
@@ -151,11 +150,11 @@ Readr.Page = (function () {
        * the post before it.
        */
 
-      for (var k = 0, l = articles.length ; k < l; k++) {
-        offset = parseInt($(articles[k]).offset().top - KEYBOARD_NAVIGATION_PADDING, 10);
+      for (var k = 0, l = postPositions.length; k < l; k++) {
+        offset = postPositions[k].top - KEYBOARD_NAVIGATION_PADDING;
 
         if (offset >= scrollTop) {
-          Page.scrollTo(0 < k ? $(articles[k - 1]).offset().top - KEYBOARD_NAVIGATION_PADDING : 0);
+          Page.scrollTo(0 < k ? postPositions[k - 1].top - KEYBOARD_NAVIGATION_PADDING : 0);
           return;
         }
       }
@@ -165,7 +164,16 @@ Readr.Page = (function () {
        * penultimate post.
        */
 
-      Page.scrollTo($(articles[--k]).offset().top - KEYBOARD_NAVIGATION_PADDING);
+      Page.scrollTo(postPositions[--k].top - KEYBOARD_NAVIGATION_PADDING);
+    }
+  }
+
+  Page.notePostPositions = function () {
+    var articles = document.querySelectorAll('#posts article');
+
+    for (var i = 0, j = articles.length ; i < j; i++) {
+      var current = $(articles[i]);
+      postPositions[i] = { top: current.offset().top, height: current.outerHeight() };
     }
   }
 

@@ -56,10 +56,12 @@ Readr.Utilities = (function () {
          * arrow left (37) navigate to the previous post.
          */
 
-        if (39 === code || 74 === code) {
+        if (74 === code || 39 === code) {
           Page.pageNavigation('next');
-        } else if (37 === code || 75 === code) {
+        } else if (75 === code || 37 === code) {
           Page.pageNavigation('prev');
+        } else if (190 === code) {
+          Page.scrollTo(0);
         }
       });
     }

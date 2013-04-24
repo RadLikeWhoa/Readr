@@ -1,11 +1,6 @@
 Readr = (function () {
 
-  function Readr () {
-    this.Page = new Readr.Page();
-    this.Utilities = new Readr.Utilities();
-    this.Touch = new Readr.Touch();
-    this.Twitter = new Readr.Twitter();
-  }
+  function Readr () { }
 
   Readr.init = function () {
     Readr.Utilities.writeWordNumber();
