@@ -13,9 +13,6 @@ Readr.Utilities = (function () {
     /**
      * While it would easily be possible to count words in other post types
      * too, to me, it only really makes sense with text posts.
-     *
-     * Change `info.parent().prev('.text')` to
-     * `info.parent().prev('article')` if you want to count all post types.
      */
 
     var text = info.parent().prev('.text')[0],
@@ -80,16 +77,6 @@ Readr.Utilities = (function () {
         e.preventDefault();
         Page.loadPosts();
       });
-    }
-  }
-
-  Utilities.polyfills = function () {
-    if (!Array.prototype.forEach) {
-      Array.prototype.forEach = function (fn, scope) {
-        for (var i = 0, len = this.length; i < len; ++i) {
-          fn.call(scope, this[i], i, this);
-        }
-      }
     }
   }
 

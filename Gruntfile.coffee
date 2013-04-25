@@ -53,8 +53,19 @@ module.exports = (grunt) ->
       dist:
         options:
           variables:
-            'script': '<%= grunt.file.read(readr.dist + "/js/main.js") %>'
-            'stylesheet': '<%= grunt.file.read(readr.dist + "/css/style.css") %>'
+            'script': '<script><%= grunt.file.read(readr.dist + "/js/main.js") %></script>'
+            'stylesheet': '<style><%= grunt.file.read(readr.dist + "/css/style.css") %></style>'
+        files: [
+          expand: true,
+          flatten: true,
+          src: '<%= readr.src %>/theme.html',
+          dest: '<%= readr.dist %>'
+        ]
+      release:
+        options:
+          variables:
+            'script': '<script src="http://static.tumblr.com/olr4cud/3Fwmlt6jj/main.js"></script>'
+            'stylesheet': '<link rel="stylesheet" href="http://static.tumblr.com/olr4cud/LM8mlt6iy/style.css">'
         files: [
           expand: true,
           flatten: true,
@@ -77,7 +88,7 @@ module.exports = (grunt) ->
       end: [ 'clean:end', 'shell:copy' ]
   )
 
-  grunt.registerTask('build', [
+  grunt.registerTask('dev', [
     'clean:start',
     'jshint:beforeconcat',
     'concat',
@@ -88,6 +99,17 @@ module.exports = (grunt) ->
     'notify'
   ])
 
+  grunt.registerTask('release', [
+    'clean:start',
+    'jshint:beforeconcat',
+    'concat',
+    'jshint:afterconcat',
+    'concurrent:dist',
+    'replace:release',
+    'shell:copy',
+    'notify'
+  ])
+
   grunt.registerTask('default', [
-    'build'
+    'dev'
   ])

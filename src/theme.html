@@ -25,6 +25,7 @@
     {block:Description}
       <meta name="description" content="{MetaDescription}">
     {/block:Description}
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
     <link rel="shortcut icon" href="{PortraitURL-48}">
     <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
     <link rel="apple-touch-icon" href="{PortraitURL-128}">
@@ -82,9 +83,7 @@
     <meta name="text:Spotify Username" content="">
     <meta name="text:Vimeo Username" content="">
     <meta name="text:YouTube Username" content="">
-    <style>
-      @@stylesheet
-    </style>
+    @@stylesheet
     <style>
       html {
         background-color: {color:Background};
@@ -165,7 +164,7 @@
             <a href="/" class="site-link button"><span aria-hidden="true" class="icon--home"></span></a>
           {/block:IfShowHomeLinkInNavigation}
           {block:IfShowRssLinkInNavigation}
-            <a href="/rss" class="site-link button"><span aria-hidden="true" class="icon--rss"></span></a>
+            <a href="{RSS}" class="site-link button"><span aria-hidden="true" class="icon--rss"></span></a>
           {/block:IfShowRssLinkInNavigation}
           {block:IfShowAskLinkInNavigation}
             {block:AskEnabled}
@@ -335,7 +334,7 @@
           </article>
           {block:PermalinkPage}
             <section class="post-summary card">
-              <ul class="post-info summary-child small">
+              <ul id="postInfo" class="post-info summary-child small">
                 {block:IfShowNoteCount}
                   {block:NoteCount}
                     <li class="info-child"><b>{lang:Notes}</b>{NoteCountWithLabel}</li>
@@ -648,9 +647,7 @@
         {/block:IfSmoothScrollingKeyboardNavigation}
       }
     </script>
-    <script>
-      @@script
-    </script>
+    @@script
     {block:Twitter}
       {block:IfEnableTwitterWidget}
         <script>
